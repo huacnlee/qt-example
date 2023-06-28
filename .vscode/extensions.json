@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "Delgan.qml-format",
+    "bbenoist.QML",
+    "rust-lang.rust-analyzer",
+    "be5invis.toml"
+  ]
+}
