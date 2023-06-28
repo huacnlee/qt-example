@@ -1,0 +1,12 @@
+[package]
+edition = "2021"
+name = "rust-qt-example"
+version = "0.1.0"
+
+[dependencies]
+cxx = "1"
+cxx-qt = "0"
+cxx-qt-lib = "0.5.3"
+
+[build-dependencies]
+cxx-qt-build = "0"
