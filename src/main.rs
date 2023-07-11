@@ -1,8 +1,13 @@
 pub mod cxxqt_object;
 
 use cxx_qt_lib::{QGuiApplication, QQmlApplicationEngine, QString, QUrl};
+// use engine::app::Env;
+// use engine::app::{AppID, AppInfo, DeviceInfo, PlatformInfo};
 
-fn main() {
+rust_i18n::i18n!(fallback = "en");
+
+#[tokio::main]
+async fn main() {
     // Create the application and engine
     let mut app = QGuiApplication::new();
     let mut engine = QQmlApplicationEngine::new();

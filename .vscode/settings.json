@@ -1,5 +1,6 @@
 {
   "[qml]": {
     "editor.defaultFormatter": "Delgan.qml-format"
-  }
+  },
+  "rust-analyzer.linkedProjects": ["./Cargo.toml"]
 }
