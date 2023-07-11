@@ -3,15 +3,15 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
-import QtQuick.Controls.Material
+import QtQuick.Controls.Basic
 import "main.mjs" as MainJS
-import "components"
+import "LBLight"
 
 // This must match the qml_uri and qml_version
 // specified with the #[cxx_qt::qobject] macro in Rust.
 import com.company.example 1.0
 
-LBWindow {
+Window {
     id: app
     title: "QT Example"
     visible: true
@@ -40,7 +40,7 @@ LBWindow {
     }
 
     onClosing: {
-        closeDialog.open();
+        // closeDialog.open();
         return false;
     }
 
@@ -67,7 +67,8 @@ LBWindow {
 
         Row {
             spacing: 6
-            LBButton {
+            Button {
+                type: "primary"
                 text: "Reload Data"
 
                 onClicked: () => {
@@ -75,14 +76,93 @@ LBWindow {
                 }
             }
 
-            LBButton {
-                text: "Say Hi!"
+            Button {
+                type: "danger"
+                text: "Delete"
+            }
+
+            Button {
+                type: "primary"
+                enabled: false
+                text: "Disabled Button"
+
+                onClicked: () => {
+                    reloadData();
+                }
+            }
+
+            Button {
+                type: "danger"
+                enabled: false
+                text: "Disabled Danger"
+
+                onClicked: () => {
+                    reloadData();
+                }
+            }
+        }
+
+        Row {
+            spacing: 6
+
+            Button {
+                text: "Button"
 
                 onClicked: myObject.sayHi(myObject.string, myObject.number)
             }
 
-            LBButton {
-                text: "LBButton"
+            Button {
+                text: "Large Button!"
+                size: "lg"
+
+                onClicked: myObject.sayHi(myObject.string, myObject.number)
+            }
+
+            Button {
+                text: "Small Button"
+                size: "sm"
+
+                onClicked: myObject.sayHi(myObject.string, myObject.number)
+            }
+
+            Button {
+                text: "Button Disabled"
+                enabled: false
+
+                onClicked: myObject.sayHi(myObject.string, myObject.number)
+            }
+        }
+
+        Row {
+            spacing: 6
+
+            CheckBox {
+                text: "CheckBox"
+            }
+
+            CheckBox {
+                checkable: true
+                checked: true
+                text: "CheckBox Checked"
+            }
+
+            CheckBox {
+                enabled: false
+                checked: false
+                text: "CheckBox Disabled"
+            }
+            CheckBox {
+                enabled: false
+                checked: true
+                text: "CheckBox Checked Disabled"
+            }
+        }
+
+        Row {
+            spacing: 6
+
+            ComboBox {
+                model: ["Item 1", "Item 2", "Item 3"]
             }
         }
 
@@ -91,13 +171,13 @@ LBWindow {
             Item {
                 RowLayout {
                     anchors.centerIn: parent
-                    LBLinkButton {
+                    Button {
                         text: "Buy"
                         onClicked: {
                             showInfo("You clicked Buy.");
                         }
                     }
-                    LBLinkButton {
+                    Button {
                         text: "Sell"
                         onClicked: {
                             showInfo("You clicked Sell.");
