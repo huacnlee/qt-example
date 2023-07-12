@@ -16,11 +16,11 @@ TextField {
     color: LBTheme.colors.foreground
 
     background: Rectangle {
-        implicitWidth: parent.width
+        implicitWidth: Math.max(parent.width, LBTheme.inputDefaultWidth)
         implicitHeight: sizes.height
         radius: sizes.radius
         color: control.enabled ? LBTheme.colors.background : LBTheme.colors.muted
-        border.color: control.activeFocus ? LBTheme.colors.focusRing : LBTheme.colors.input
-        border.width: control.activeFocus ? 2 : 1
+        border.color: LBTheme.colors.border
+        border.width: 1
     }
 }

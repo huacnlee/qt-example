@@ -11,7 +11,7 @@ Rectangle {
     border.color: LBTheme.colors.border
     border.width: 1
     color: LBTheme.colors.card
-    radius: 8
+    radius: LBTheme.borderRadius.lg
     property int paddings: 24
 
     Shadow {

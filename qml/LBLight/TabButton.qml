@@ -14,7 +14,7 @@ TabButton {
         implicitHeight: 28
         implicitWidth: 95
         color: control.checked ? LBTheme.colors.background : "transparent"
-        radius: 4
+        radius: LBTheme.borderRadius.sm
         layer.enabled: true
         layer.effect: Shadow {
             size: "sm"

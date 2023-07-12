@@ -1,4 +1,7 @@
 // https://github.com/shadcn/ui/blob/shadcn-ui%400.3.0/apps/www/registry/colors.ts#L1513
+export const radius = 6;
+export const inputDefaultWidth = 120;
+
 export const colors = {
   background: '#FFFFFF',
   foreground: '#18181B',
@@ -19,6 +22,12 @@ export const colors = {
   accent: '#F4F4F5',
   accentForeground: '#18181B',
   focusRing: '#994285F4',
+};
+
+export const borderRadius = {
+  sm: 4,
+  md: 6,
+  lg: 8,
 };
 
 export const avatarSizes = {
@@ -49,21 +58,21 @@ export function btnSize(control) {
         padding: 24,
         width: 100,
         height: 45,
-        radius: 8,
+        radius: borderRadius.lg,
       };
     case 'sm':
       return {
         padding: 8,
         width: 56,
         height: 24,
-        radius: 4,
+        radius: borderRadius.sm,
       };
     default:
       return {
         padding: 16,
         width: 76,
         height: 36,
-        radius: 6,
+        radius: radius,
       };
   }
 }
@@ -104,6 +113,11 @@ export function shadowStyle(control) {
       return {
         radius: 2,
         color: '#0D000000',
+      };
+    case 'md':
+      return {
+        radius: 6,
+        color: '#1A000000',
       };
     default:
       return {

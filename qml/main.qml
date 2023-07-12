@@ -49,7 +49,7 @@ ApplicationWindow {
 
         TabBar {
             id: mainTabBar
-            currentIndex: 0
+            currentIndex: 2
 
             Repeater {
                 model: ["Button", "CheckBox", "Input", "Avatar", "Table"]

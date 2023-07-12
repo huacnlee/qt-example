@@ -38,15 +38,13 @@ CheckBox {
             layer.effect: Shadow {
             }
         }
-        Image {
+
+        Icon {
             id: check_img
-            width: 14
-            height: 14
+            size: 14
+            name: "checkbox-check"
             x: 1
             y: 1
-            source: "assets/checkbox-check.svg"
-            sourceSize.width: 14
-            sourceSize.height: 14
             visible: control.checked
         }
         ColorOverlay {
