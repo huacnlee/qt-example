@@ -52,7 +52,7 @@ ApplicationWindow {
             currentIndex: 0
 
             Repeater {
-                model: ["Button", "CheckBox", "Input", "Table"]
+                model: ["Button", "CheckBox", "Input", "Avatar", "Table"]
                 TabButton {
                     text: modelData
                     width: 100
@@ -224,6 +224,25 @@ ApplicationWindow {
                         ComboBox {
                             model: ["Item 1", "Item 2", "Item 3"]
                         }
+                    }
+                }
+            }
+            Card {
+                Row {
+                    spacing: 6
+
+                    Avatar {
+                        src: "https://i.pravatar.cc/150?img=70"
+                        size: "lg"
+                    }
+
+                    Avatar {
+                        src: "https://i.pravatar.cc/150?img=43"
+                    }
+
+                    Avatar {
+                        src: "https://i.pravatar.cc/150?img=64"
+                        size: "sm"
                     }
                 }
             }

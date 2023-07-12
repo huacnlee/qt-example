@@ -21,6 +21,12 @@ export const colors = {
   focusRing: '#994285F4',
 };
 
+export const avatarSizes = {
+  sm: 24,
+  md: 40,
+  lg: 56,
+};
+
 /**
  *
  * @param {*} hexColor HEX color
