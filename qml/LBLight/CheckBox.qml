@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
@@ -9,9 +10,13 @@ CheckBox {
     id: control
     text: qsTr("CheckBox")
     focusPolicy: Qt.StrongFocus
-    activeFocusOnTab: true
+    property string description: ""
+    property var hasDescription: description !== ""
+    spacing: 4
 
+    // Checkbox
     indicator: Rectangle {
+        anchors.top: parent.top
         implicitWidth: 16
         implicitHeight: 16
         opacity: enabled ? 1.0 : 0.1
@@ -20,6 +25,7 @@ CheckBox {
         radius: 4
         border.color: "#18181B"
 
+        // Checked
         Rectangle {
             width: 16
             height: 16
@@ -29,9 +35,8 @@ CheckBox {
             color: LBTheme.colors.primary
             visible: control.checked
 
-            FocusRing {
-                radius: 4
-                visible: control.activeFocus
+            layer.enabled: true
+            layer.effect: Shadow {
             }
         }
         Image {
@@ -52,12 +57,26 @@ CheckBox {
             transform: rotation
         }
     }
-    contentItem: Text {
-        text: control.text
-        font: control.font
-        opacity: enabled ? 1.0 : 0.3
-        color: LBTheme.colors.foreground
-        verticalAlignment: Text.AlignVCenter
-        leftPadding: control.indicator.width + control.spacing
+
+    // Label
+    contentItem: Column {
+        spacing: control.spacing
+        anchors.top: parent.top
+        leftPadding: control.indicator.width + control.spacing + 2
+
+        Label {
+            text: control.text
+            font.weight: hasDescription ? Font.DemiBold : Font.Normal
+            opacity: enabled ? 1.0 : 0.3
+            color: LBTheme.colors.foreground
+        }
+
+        Label {
+            anchors.topMargin: control.spacing
+            visible: hasDescription
+            text: control.description
+            opacity: enabled ? 1.0 : 0.3
+            color: LBTheme.colors.mutedForeground
+        }
     }
 }

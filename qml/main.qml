@@ -52,7 +52,7 @@ ApplicationWindow {
             currentIndex: 0
 
             Repeater {
-                model: ["Button", "Input", "Table"]
+                model: ["Button", "CheckBox", "Input", "Table"]
                 TabButton {
                     text: modelData
                     width: 100
@@ -143,6 +143,12 @@ ApplicationWindow {
                             onClicked: myObject.sayHi(myObject.string, myObject.number)
                         }
                     }
+                }
+            }
+            Card {
+                id: checkboxTab
+                Column {
+                    spacing: 16
                     Row {
                         spacing: 6
 
@@ -163,6 +169,21 @@ ApplicationWindow {
                             checked: true
                             enabled: false
                             text: "CheckBox Checked Disabled"
+                        }
+                    }
+
+                    Column {
+                        spacing: 8
+
+                        CheckBox {
+                            text: "CheckBox with Description"
+                            description: "Description can be used to add more information about the checkbox.\nThis is second line."
+                        }
+
+                        CheckBox {
+                            text: "CheckBox"
+                            enabled: false
+                            description: "This is disabled checkbox"
                         }
                     }
                 }
