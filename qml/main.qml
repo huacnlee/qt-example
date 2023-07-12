@@ -196,10 +196,10 @@ ApplicationWindow {
                 }
             }
             Card {
-                id: inputsTab
+                id: inputTab
                 Column {
                     spacing: 16
-                    Row {
+                    RowLayout {
                         spacing: 6
 
                         TextField {
@@ -218,7 +218,22 @@ ApplicationWindow {
                             width: 200
                         }
                     }
-                    Row {
+                    RowLayout {
+                        spacing: 6
+
+                        TextField {
+                            width: 200
+                            Layout.fillWidth: true
+                            placeholderText: "Your email"
+                        }
+
+                        Button {
+                            id: btnSubscribe
+                            type: "primary"
+                            text: "Subscribe"
+                        }
+                    }
+                    RowLayout {
                         spacing: 6
 
                         ComboBox {
@@ -228,6 +243,7 @@ ApplicationWindow {
                 }
             }
             Card {
+                id: avatarTab
                 Row {
                     spacing: 6
 

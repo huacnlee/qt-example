@@ -4,21 +4,24 @@ import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
 import "theme.mjs" as LBTheme
 
-Rectangle {
+Button {
     id: control
     property string size: "md"
     property string src
     anchors.verticalCenter: parent.verticalCenter
-
     width: LBTheme.avatarSizes[control.size] || LBTheme.avatarSizes.md
     height: control.width
-    radius: 100
+
+    background: Rectangle {
+        radius: 100
+    }
 
     Image {
         id: img
         anchors.fill: parent
         source: src
         fillMode: Image.PreserveAspectFit
+        opacity: down ? 0.9 : 1
 
         layer.enabled: true
         layer.effect: OpacityMask {

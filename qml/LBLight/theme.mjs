@@ -69,30 +69,27 @@ export function btnSize(control) {
 }
 
 export function btnStyle(control) {
-  let { type, hovered, enabled, activeFocus } = control;
+  let { type, down, enabled, activeFocus } = control;
   if (!enabled) {
-    hovered = false;
-  }
-  if (activeFocus) {
-    hovered = true;
+    down = false;
   }
 
   switch (type) {
     case 'primary':
       return {
-        backgroundColor: hovered ? opacity(colors.primary, 90) : colors.primary,
+        backgroundColor: down ? opacity(colors.primary, 90) : colors.primary,
         color: colors.primaryForeground,
         borderColor: colors.primary,
       };
     case 'danger':
       return {
-        backgroundColor: hovered ? opacity(colors.danger, 90) : colors.danger,
+        backgroundColor: down ? opacity(colors.danger, 90) : colors.danger,
         color: colors.dangerForeground,
         borderColor: colors.danger,
       };
     default:
       return {
-        backgroundColor: hovered ? colors.accent : colors.background,
+        backgroundColor: down ? colors.accent : colors.background,
         color: colors.secondaryForeground,
         borderColor: colors.input,
       };

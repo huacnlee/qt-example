@@ -17,7 +17,7 @@ Button {
 
     contentItem: Text {
         text: control.text
-        opacity: enabled ? 1.0 : 0.3
+        opacity: enabled ? down ? 0.7 : 1.0 : 0.3
         color: LBTheme.btnStyle(control).color
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
@@ -32,7 +32,7 @@ Button {
         border.width: 1
         border.color: style.borderColor
         radius: sizes.radius
-        layer.enabled: true
+        layer.enabled: down ? false : true
         layer.effect: Shadow {
             size: "sm"
         }
