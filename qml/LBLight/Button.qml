@@ -6,82 +6,26 @@ import "theme.mjs" as LBTheme
 import "base"
 
 Button {
-    function btnSize(control) {
-        const { size } = control
-
-        switch (size) {
-            case "lg":
-                return {
-                    padding: 24,
-                    width: 100,
-                    height: 45,
-                    radius: 8,
-                }
-            case "sm":
-                return {
-                    padding: 8,
-                    width: 56,
-                    height: 24,
-                    radius: 4,
-                }
-            default:
-                return {
-                    padding: 16,
-                    width: 76,
-                    height: 36,
-                    radius: 6,
-                }
-        }
-    }
-
-    function btnStyle(control) {
-        let { type, hovered, enabled } = control
-        if (!enabled) {
-            hovered = false
-        }
-        
-        const { colors, opacity } = LBTheme
-        switch (type) {
-            case 'primary':
-                return {
-                    backgroundColor: hovered ? opacity(colors.primary, 90) : colors.primary,
-                    color: colors.primaryForeground,
-                    borderColor: colors.primary,
-                };
-            case "danger":
-                return {
-                    backgroundColor: hovered ? opacity(colors.danger, 90) : colors.danger,
-                    color: colors.dangerForeground,
-                    borderColor: colors.danger,
-                }
-            default:
-                return {
-                    backgroundColor: hovered ? colors.accent : colors.background,
-                    color: colors.secondaryForeground,
-                    borderColor: colors.input,
-                };
-        }
-    }
-
-
     id: control
     property var type: "default"
     property var size: "md"
+    property var style: LBTheme.btnStyle(control)
+    property var sizes: LBTheme.btnSize(control)
     leftPadding: sizes.padding
     rightPadding: sizes.padding
-
-    property var style: btnStyle(control)
-    property var sizes: btnSize(control)
+    activeFocusOnTab: true
+    focusPolicy: Qt.StrongFocus
 
     contentItem: Text {
         text: control.text
         opacity: enabled ? 1.0 : 0.3
-        color: btnStyle(control).color
+        color: LBTheme.btnStyle(control).color
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
 
     background: Rectangle {
+        anchors.fill: parent
         implicitWidth: sizes.width
         implicitHeight: sizes.height
         opacity: enabled ? 1 : 0.3

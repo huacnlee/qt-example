@@ -2,13 +2,14 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
+import "base"
+import "theme.mjs" as LBTheme
 
 CheckBox {
     id: control
     text: qsTr("CheckBox")
-    property var clickListener: function () {
-        checked = !checked;
-    }
+    focusPolicy: Qt.StrongFocus
+    activeFocusOnTab: true
 
     indicator: Rectangle {
         implicitWidth: 16
@@ -25,8 +26,13 @@ CheckBox {
             x: 0
             y: 0
             radius: 4
-            color: "#18181B"
+            color: LBTheme.colors.primary
             visible: control.checked
+
+            FocusRing {
+                radius: 4
+                visible: control.activeFocus
+            }
         }
         Image {
             id: check_img
@@ -46,12 +52,11 @@ CheckBox {
             transform: rotation
         }
     }
-    onClicked: clickListener()
     contentItem: Text {
         text: control.text
         font: control.font
         opacity: enabled ? 1.0 : 0.3
-        color: "#18181B"
+        color: LBTheme.colors.foreground
         verticalAlignment: Text.AlignVCenter
         leftPadding: control.indicator.width + control.spacing
     }

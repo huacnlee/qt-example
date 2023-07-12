@@ -18,6 +18,7 @@ export const colors = {
   dangerForeground: '#FFFFFF',
   accent: '#F4F4F5',
   accentForeground: '#18181B',
+  focusRing: '#994285F4',
 };
 
 /**
@@ -31,4 +32,63 @@ export function opacity(hexColor, percent) {
   var _opacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
   let color = hexColor.replace('#', '');
   return '#' + _opacity.toString(16) + color;
+}
+
+export function btnSize(control) {
+  const { size } = control;
+
+  switch (size) {
+    case 'lg':
+      return {
+        padding: 24,
+        width: 100,
+        height: 45,
+        radius: 8,
+      };
+    case 'sm':
+      return {
+        padding: 8,
+        width: 56,
+        height: 24,
+        radius: 4,
+      };
+    default:
+      return {
+        padding: 16,
+        width: 76,
+        height: 36,
+        radius: 6,
+      };
+  }
+}
+
+export function btnStyle(control) {
+  let { type, hovered, enabled, activeFocus } = control;
+  if (!enabled) {
+    hovered = false;
+  }
+  if (activeFocus) {
+    hovered = true;
+  }
+
+  switch (type) {
+    case 'primary':
+      return {
+        backgroundColor: hovered ? opacity(colors.primary, 90) : colors.primary,
+        color: colors.primaryForeground,
+        borderColor: colors.primary,
+      };
+    case 'danger':
+      return {
+        backgroundColor: hovered ? opacity(colors.danger, 90) : colors.danger,
+        color: colors.dangerForeground,
+        borderColor: colors.danger,
+      };
+    default:
+      return {
+        backgroundColor: hovered ? colors.accent : colors.background,
+        color: colors.secondaryForeground,
+        borderColor: colors.input,
+      };
+  }
 }

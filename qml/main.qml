@@ -3,34 +3,16 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
-import QtQuick.Controls.Basic
 import "main.mjs" as MainJS
 import "LBLight"
-
-// This must match the qml_uri and qml_version
-// specified with the #[cxx_qt::qobject] macro in Rust.
 import com.company.example 1.0
 
-Window {
+ApplicationWindow {
     id: app
     title: "QT Example"
-    visible: true
     width: 1000
     height: 640
-
-    MyObject {
-        id: myObject
-        number: 1
-        string: "Hello, this is number: " + myObject.number
-    }
-
-    Watchlist {
-        id: myWatchlist
-    }
-
-    Component.onCompleted: {
-        reloadData();
-    }
+    visible: true
 
     function reloadData() {
         myObject.incrementNumber();
@@ -39,219 +21,244 @@ Window {
     // MainJS.loadData(myObject, mainTableView, {tableRowAction, tableRowLastDone});
     }
 
+    MouseArea {
+        anchors.fill: parent
+        onClicked: forceActiveFocus()
+    }
+
+    Component.onCompleted: {
+        reloadData();
+    }
     onClosing: {
         // closeDialog.open();
         return false;
     }
 
-    Column {
-        anchors.top: parent.top
-        padding: 10
-        spacing: 10
+    MyObject {
+        id: myObject
+        number: 1
+        string: "Hello, this is number: " + myObject.number
+    }
+    Watchlist {
+        id: myWatchlist
+    }
 
-        Row {
-            spacing: 6
-            Label {
-                text: "Number: " + myObject.number
-            }
+    ColumnLayout {
+        anchors.fill: parent
+        anchors.margins: 16
 
-            Label {
-                text: "String: " + myObject.string
-            }
+        TabBar {
+            id: mainTabBar
+            currentIndex: 0
 
-            Text {
-                text: "You Name:"
-                onTextChanged: myObject.string = text
-            }
-        }
-
-        Row {
-            spacing: 6
-            Button {
-                type: "primary"
-                text: "Reload Data"
-
-                onClicked: () => {
-                    reloadData();
-                }
-            }
-
-            Button {
-                type: "danger"
-                text: "Delete"
-            }
-
-            Button {
-                type: "primary"
-                enabled: false
-                text: "Disabled Button"
-
-                onClicked: () => {
-                    reloadData();
-                }
-            }
-
-            Button {
-                type: "danger"
-                enabled: false
-                text: "Disabled Danger"
-
-                onClicked: () => {
-                    reloadData();
+            Repeater {
+                model: ["Button", "Input", "Table"]
+                TabButton {
+                    text: modelData
+                    width: 100
                 }
             }
         }
 
-        Row {
-            spacing: 6
+        StackLayout {
+            id: mainStockTabs
+            currentIndex: mainTabBar.currentIndex
 
-            Button {
-                text: "Button"
+            Card {
+                id: buttonsTab
 
-                onClicked: myObject.sayHi(myObject.string, myObject.number)
-            }
+                Column {
+                    spacing: 16
+                    Row {
+                        spacing: 6
 
-            Button {
-                text: "Large Button!"
-                size: "lg"
+                        Label {
+                            text: "Number: " + myObject.number
+                        }
+                        Label {
+                            text: "String: " + myObject.string
+                        }
+                        Text {
+                            text: "You Name:"
 
-                onClicked: myObject.sayHi(myObject.string, myObject.number)
-            }
-
-            Button {
-                text: "Small Button"
-                size: "sm"
-
-                onClicked: myObject.sayHi(myObject.string, myObject.number)
-            }
-
-            Button {
-                text: "Button Disabled"
-                enabled: false
-
-                onClicked: myObject.sayHi(myObject.string, myObject.number)
-            }
-        }
-
-        Row {
-            spacing: 6
-
-            CheckBox {
-                text: "CheckBox"
-            }
-
-            CheckBox {
-                checkable: true
-                checked: true
-                text: "CheckBox Checked"
-            }
-
-            CheckBox {
-                enabled: false
-                checked: false
-                text: "CheckBox Disabled"
-            }
-            CheckBox {
-                enabled: false
-                checked: true
-                text: "CheckBox Checked Disabled"
-            }
-        }
-
-        Row {
-            spacing: 6
-
-            ComboBox {
-                model: ["Item 1", "Item 2", "Item 3"]
-            }
-        }
-
-        Component {
-            id: tableRowAction
-            Item {
-                RowLayout {
-                    anchors.centerIn: parent
-                    Button {
-                        text: "Buy"
-                        onClicked: {
-                            showInfo("You clicked Buy.");
+                            onTextChanged: myObject.string = text
                         }
                     }
-                    Button {
-                        text: "Sell"
-                        onClicked: {
-                            showInfo("You clicked Sell.");
+
+                    Row {
+                        spacing: 6
+
+                        Button {
+                            text: "Reload Data"
+                            type: "primary"
+                            focus: true
+
+                            onClicked: {
+                                reloadData();
+                            }
+                        }
+                        Button {
+                            text: "Delete"
+                            type: "danger"
+                        }
+                        Button {
+                            enabled: false
+                            text: "Disabled Button"
+                            type: "primary"
+                        }
+                        Button {
+                            enabled: false
+                            text: "Disabled Danger"
+                            type: "danger"
+
+                            onClicked: {
+                                reloadData();
+                            }
+                        }
+                    }
+                    Row {
+                        spacing: 6
+
+                        Button {
+                            text: "Button"
+
+                            onClicked: myObject.sayHi(myObject.string, myObject.number)
+                        }
+                        Button {
+                            size: "lg"
+                            text: "Large Button!"
+
+                            onClicked: myObject.sayHi(myObject.string, myObject.number)
+                        }
+                        Button {
+                            size: "sm"
+                            text: "Small Button"
+
+                            onClicked: myObject.sayHi(myObject.string, myObject.number)
+                        }
+                        Button {
+                            enabled: false
+                            text: "Button Disabled"
+
+                            onClicked: myObject.sayHi(myObject.string, myObject.number)
+                        }
+                    }
+                    Row {
+                        spacing: 6
+
+                        CheckBox {
+                            text: "CheckBox"
+                        }
+                        CheckBox {
+                            checkable: true
+                            checked: true
+                            text: "CheckBox Checked"
+                        }
+                        CheckBox {
+                            checked: false
+                            enabled: false
+                            text: "CheckBox Disabled"
+                        }
+                        CheckBox {
+                            checked: true
+                            enabled: false
+                            text: "CheckBox Checked Disabled"
                         }
                     }
                 }
             }
-        }
+            Card {
+                id: inputsTab
+                Column {
+                    spacing: 16
+                    Row {
+                        spacing: 6
 
-        Component {
-            id: tableRowLastDone
+                        TextField {
+                            placeholderText: "Enter your name"
+                        }
 
-            Item {
-                readonly property var obj: tableModel.getRow(row)
-                RowLayout {
-                    anchors.centerIn: parent
+                        TextField {
+                            text: "This is disabled"
+                            enabled: false
+                            width: 200
+                        }
 
-                    LBPrice {
-                        price: obj.last_done_val
-                        upDown: obj.up_down
+                        TextField {
+                            echoMode: TextInput.Password
+                            text: "Password"
+                            width: 200
+                        }
+                    }
+                    Row {
+                        spacing: 6
+
+                        ComboBox {
+                            model: ["Item 1", "Item 2", "Item 3"]
+                        }
+                    }
+                }
+            }
+            Card {
+                id: tableViewTab
+                TableView {
+                    id: mainTableView
+                    anchors.fill: parent
+                    model: myWatchlist
+                    resizableColumns: true
+
+                    delegate: Rectangle {
+                        implicitHeight: 36
+                        implicitWidth: 100
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: name
+                        }
                     }
                 }
             }
         }
+    }
 
-        TableView {
-            id: mainTableView
-            anchors.fill: parent
-            anchors.topMargin: 64
-            resizableColumns: true
-            model: myWatchlist
-            delegate: Rectangle {
-                implicitWidth: 100
-                implicitHeight: 50
-                Label {
-                    text: name
-                    anchors.centerIn: parent
+    Component {
+        id: tableRowAction
+
+        Item {
+            RowLayout {
+                anchors.centerIn: parent
+
+                Button {
+                    text: "Buy"
+
+                    onClicked: {
+                        showInfo("You clicked Buy.");
+                    }
+                }
+                Button {
+                    text: "Sell"
+
+                    onClicked: {
+                        showInfo("You clicked Sell.");
+                    }
                 }
             }
         }
+    }
+    Component {
+        id: tableRowLastDone
 
-        // FluTableView {
-        //     id: mainTableView
-        //     anchors.fill: parent
-        //     anchors.topMargin: 64
-        //     columnSource: [{
-        //             "title": 'Name',
-        //             "dataIndex": 'name',
-        //             "width": 100,
-        //             "minimumWidth": 80,
-        //             "maximumWidth": 200,
-        //             "readOnly": true
-        //         }, {
-        //             "title": 'Code',
-        //             "dataIndex": 'code',
-        //             "width": 100,
-        //             "minimumWidth": 100,
-        //             "maximumWidth": 100,
-        //             "readOnly": true
-        //         }, {
-        //             "title": 'Last Done',
-        //             "dataIndex": 'last_done',
-        //             "width": 200,
-        //             "minimumWidth": 100,
-        //             "align": 'right',
-        //             "readOnly": true
-        //         }, {
-        //             "title": 'Action',
-        //             "dataIndex": 'action',
-        //             "width": 160,
-        //             "minimumWidth": 160,
-        //             "maximumWidth": 160,
-        //             "readOnly": true
-        //         }]
-        // }
+        Item {
+            readonly property var obj: tableModel.getRow(row)
+
+            RowLayout {
+                anchors.centerIn: parent
+
+                LBPrice {
+                    price: obj.last_done_val
+                    upDown: obj.up_down
+                }
+            }
+        }
     }
 }

@@ -164,8 +164,8 @@ pub mod ffi {
 
         // Example of overriding a C++ virtual method and calling the base class implementation.
         #[qinvokable(cxx_override)]
-        pub fn can_fetch_more(&self, parent: &QModelIndex) -> bool {
-            return false;
+        pub fn can_fetch_more(&self, _parent: &QModelIndex) -> bool {
+            false
         }
 
         #[qinvokable(cxx_override)]

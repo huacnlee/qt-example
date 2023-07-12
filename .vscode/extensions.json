@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "Delgan.qml-format",
-    "bbenoist.QML",
+    "felgo.felgo",
     "rust-lang.rust-analyzer",
     "be5invis.toml"
   ]

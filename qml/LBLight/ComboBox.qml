@@ -8,6 +8,7 @@ ComboBox {
     id: control
     rightPadding: 16
     leftPadding: 16
+    focusPolicy: Qt.StrongFocus
 
     delegate: ItemDelegate {
         width: control.width
@@ -34,7 +35,6 @@ ComboBox {
             source: "assets/combox-down.svg"
             sourceSize.width: 16
             sourceSize.height: 16
-            visible: control.checked
         }
         ColorOverlay {
             anchors.fill: down_arrow
@@ -84,9 +84,29 @@ ComboBox {
             }
         }
 
+        enter: Transition {
+            NumberAnimation {
+                property: "opacity"
+                from: 0
+                to: 1
+                duration: 83
+            }
+        }
+        exit: Transition {
+            NumberAnimation {
+                property: "opacity"
+                from: 1
+                to: 0
+                duration: 83
+            }
+        }
+
         background: Rectangle {
             border.color: "#18181B"
             radius: 6
+
+            ShadowSM {
+            }
         }
     }
 }
