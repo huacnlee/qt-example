@@ -52,7 +52,7 @@ ApplicationWindow {
             currentIndex: 2
 
             Repeater {
-                model: ["Button", "CheckBox", "Input", "Avatar", "Table"]
+                model: ["Button", "CheckBox", "Text", "Avatar", "Table"]
                 TabButton {
                     text: modelData
                     width: 100
@@ -196,7 +196,7 @@ ApplicationWindow {
                 }
             }
             Card {
-                id: inputTab
+                id: textTab
                 Column {
                     spacing: 16
                     RowLayout {
@@ -238,6 +238,29 @@ ApplicationWindow {
 
                         ComboBox {
                             model: ["Item 1", "Item 2", "Item 3"]
+                        }
+
+                        ComboBox {
+                            model: ["中国大陆", "香港", "美国", "新加坡", "澳大利亚", "新西兰", "印度", "英国", "德国", "日本", "韩国"]
+                            enabled: false
+                        }
+                    }
+
+                    RowLayout {
+                        spacing: 6
+
+                        Badge {
+                            type: "primary"
+                            text: "Badge"
+                        }
+
+                        Badge {
+                            text: "Outline"
+                        }
+
+                        Badge {
+                            type: "danger"
+                            text: "Danger"
                         }
                     }
                 }
