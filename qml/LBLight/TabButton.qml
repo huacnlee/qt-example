@@ -3,7 +3,6 @@ import QtQuick.Controls
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
 import "theme.mjs" as LBTheme
-import "base"
 
 TabButton {
     id: control
@@ -17,7 +16,8 @@ TabButton {
         color: control.checked ? LBTheme.colors.background : "transparent"
         radius: 4
         layer.enabled: true
-        layer.effect: ShadowSM {
+        layer.effect: Shadow {
+            size: "sm"
         }
     }
 

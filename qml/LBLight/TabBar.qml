@@ -3,7 +3,6 @@ import QtQuick.Controls
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
 import "theme.mjs" as LBTheme
-import "base"
 
 TabBar {
     id: control

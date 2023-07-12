@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
-import "base"
 
 ComboBox {
     id: control
@@ -64,7 +63,8 @@ ComboBox {
         border.width: 1
         radius: 6
         layer.enabled: true
-        layer.effect: ShadowSM {
+        layer.effect: Shadow {
+            size: "sm"
         }
     }
 
@@ -105,7 +105,8 @@ ComboBox {
             border.color: "#18181B"
             radius: 6
 
-            ShadowSM {
+            Shadow {
+                size: "sm"
             }
         }
     }

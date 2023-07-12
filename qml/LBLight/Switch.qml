@@ -3,7 +3,6 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
-import "base"
 import "theme.mjs" as LBTheme
 
 Switch {
@@ -35,7 +34,8 @@ Switch {
             color: LBTheme.colors.card
 
             layer.enabled: true
-            layer.effect: ShadowSM {
+            layer.effect: Shadow {
+                size: "sm"
             }
 
             Behavior on x  {

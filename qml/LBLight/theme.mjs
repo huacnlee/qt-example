@@ -98,3 +98,20 @@ export function btnStyle(control) {
       };
   }
 }
+
+export function shadowStyle(control) {
+  const { size } = control;
+
+  switch (size) {
+    case 'sm':
+      return {
+        radius: 2,
+        color: '#0D000000',
+      };
+    default:
+      return {
+        radius: 3,
+        color: '#1A000000',
+      };
+  }
+}

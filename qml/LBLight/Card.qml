@@ -4,7 +4,6 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Basic
 import "theme.mjs" as LBTheme
-import "base"
 
 Rectangle {
     id: control

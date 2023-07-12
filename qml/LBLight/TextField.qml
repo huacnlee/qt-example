@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls.Basic
 import "theme.mjs" as LBTheme
-import "base"
 
 TextField {
     id: control

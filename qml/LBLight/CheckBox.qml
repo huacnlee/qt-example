@@ -3,7 +3,6 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
-import "base"
 import "theme.mjs" as LBTheme
 
 CheckBox {

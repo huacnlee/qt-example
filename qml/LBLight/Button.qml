@@ -3,7 +3,6 @@ import QtQuick.Controls
 import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
 import "theme.mjs" as LBTheme
-import "base"
 
 Button {
     id: control
@@ -34,7 +33,8 @@ Button {
         border.color: style.borderColor
         radius: sizes.radius
         layer.enabled: true
-        layer.effect: ShadowSM {
+        layer.effect: Shadow {
+            size: "sm"
         }
     }
 }
