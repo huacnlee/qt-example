@@ -173,7 +173,7 @@ ApplicationWindow {
                     }
 
                     Column {
-                        spacing: 8
+                        spacing: 6
 
                         CheckBox {
                             text: "CheckBox with Description"
@@ -184,6 +184,13 @@ ApplicationWindow {
                             text: "CheckBox"
                             enabled: false
                             description: "This is disabled checkbox"
+                        }
+                    }
+
+                    Row {
+                        spacing: 6
+                        Switch {
+                            text: "Switch"
                         }
                     }
                 }
