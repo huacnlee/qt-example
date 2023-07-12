@@ -51,6 +51,7 @@ ComboBox {
         anchors.rightMargin: control.rightPadding
         width: 16
         height: 16
+        opacity: enabled ? 1 : 0.3
         color: "transparent"
         Icon {
             size: 16
@@ -75,7 +76,8 @@ ComboBox {
         implicitWidth: LBTheme.inputDefaultWidth
         implicitHeight: sizes.height
         border.color: LBTheme.colors.border
-        color: hovered ? LBTheme.colors.accent : LBTheme.colors.background
+        opacity: enabled ? 1 : 0.3
+        color: enabled ? (hovered ? LBTheme.colors.accent : LBTheme.colors.background) : LBTheme.colors.background
         border.width: 1
         radius: LBTheme.radius
         layer.enabled: true
