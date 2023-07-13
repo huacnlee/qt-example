@@ -58,6 +58,7 @@ export function btnSize(control) {
         padding: 24,
         width: 100,
         height: 45,
+        iconSize: 16,
         radius: borderRadius.lg,
       };
     case 'sm':
@@ -65,6 +66,7 @@ export function btnSize(control) {
         padding: 8,
         width: 56,
         height: 24,
+        iconSize: 16,
         radius: borderRadius.sm,
       };
     default:
@@ -72,6 +74,7 @@ export function btnSize(control) {
         padding: 16,
         width: 76,
         height: 36,
+        iconSize: 16,
         radius: radius,
       };
   }

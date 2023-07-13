@@ -10,8 +10,8 @@ import com.company.example 1.0
 ApplicationWindow {
     id: app
     title: "QT Example"
-    width: 1000
-    height: 640
+    width: 1280
+    height: 960
     visible: true
 
     function reloadData() {
@@ -164,6 +164,56 @@ ApplicationWindow {
                             size: "sm"
                             text: "Small Button"
                             icon.source: "assets/checkbox-check.svg"
+                        }
+
+                        Button {
+                            size: "lg"
+                            text: "Large Button"
+                            icon.source: "assets/trash.svg"
+                        }
+                    }
+                    Row {
+                        spacing: 6
+
+                        Button {
+                            text: "Primary with Loading"
+                            type: "primary"
+                            loading: true
+                        }
+
+                        Button {
+                            text: "Danger with Loading"
+                            type: "danger"
+                            loading: true
+                        }
+
+                        Button {
+                            text: "Default"
+                            loading: true
+                        }
+
+                        Button {
+                            text: "Disabled"
+                            enabled: false
+                            loading: true
+                        }
+
+                        Button {
+                            text: "Icon with Loading"
+                            loading: true
+                            icon.source: "assets/mail-send.svg"
+                        }
+
+                        Button {
+                            text: "Small Loading"
+                            size: "sm"
+                            loading: true
+                        }
+
+                        Button {
+                            text: "Large Loading"
+                            size: "lg"
+                            loading: true
                         }
                     }
                     Column {

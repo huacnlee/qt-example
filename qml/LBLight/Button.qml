@@ -6,10 +6,14 @@ import "theme.mjs" as LBTheme
 
 Button {
     id: control
-    property var type: "default"
-    property var size: "md"
-    property var styles: LBTheme.btnStyle(control)
-    property var sizes: LBTheme.btnSize(control)
+
+    property string type: "default"
+    property string size: "md"
+    property bool loading: false
+
+    readonly property var styles: LBTheme.btnStyle(control)
+    readonly property var sizes: LBTheme.btnSize(control)
+
     leftPadding: sizes.padding
     rightPadding: sizes.padding
     activeFocusOnTab: true
@@ -26,8 +30,7 @@ Button {
         Icon {
             id: icon
             source: control.icon.source
-            width: 16
-            height: 16
+            size: sizes.iconSize
             visible: hasIcon
             color: styles.color
             opacity: enabled ? 1 : 0.3
@@ -40,6 +43,13 @@ Button {
             anchors.verticalCenter: parent.verticalCenter
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
+        }
+
+        Loading {
+            color: styles.color
+            size: sizes.iconSize * 0.85
+            visible: control.loading
+            enabled: control.enabled
         }
     }
 
