@@ -290,6 +290,22 @@ ApplicationWindow {
                         Switch {
                             text: "Switch"
                         }
+
+                        Switch {
+                            text: "Switch Checked"
+                            checked: true
+                        }
+
+                        Switch {
+                            text: "Switch Disabled"
+                            enabled: false
+                        }
+
+                        Switch {
+                            text: "Switch Checked (Disabled)"
+                            enabled: false
+                            checked: true
+                        }
                     }
                 }
             }

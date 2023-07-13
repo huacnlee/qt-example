@@ -7,7 +7,6 @@ import "theme.mjs" as LBTheme
 
 Switch {
     id: control
-    text: qsTr("Switch")
 
     indicator: Rectangle {
         id: indicatorBg
@@ -17,6 +16,7 @@ Switch {
         y: parent.height / 2 - height / 2
         radius: 100
         color: control.checked ? LBTheme.colors.primary : LBTheme.colors.input
+        opacity: enabled ? 1.0 : 0.6
 
         Behavior on color  {
             ColorAnimation {
@@ -50,7 +50,6 @@ Switch {
 
     contentItem: Text {
         text: control.text
-        font.weight: Font.DemiBold
         opacity: enabled ? 1.0 : 0.3
         color: LBTheme.colors.foreground
         verticalAlignment: Text.AlignVCenter
