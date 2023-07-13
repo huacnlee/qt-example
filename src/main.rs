@@ -1,8 +1,6 @@
 pub mod cxxqt_object;
 
 use cxx_qt_lib::{QGuiApplication, QQmlApplicationEngine, QString, QUrl};
-// use engine::app::Env;
-// use engine::app::{AppID, AppInfo, DeviceInfo, PlatformInfo};
 
 rust_i18n::i18n!(fallback = "en");
 

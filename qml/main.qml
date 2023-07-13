@@ -49,7 +49,7 @@ ApplicationWindow {
 
         TabBar {
             id: mainTabBar
-            currentIndex: 2
+            currentIndex: 0
 
             Repeater {
                 model: ["Button", "CheckBox", "Text", "Avatar", "Table"]
@@ -141,6 +141,54 @@ ApplicationWindow {
                             text: "Button Disabled"
 
                             onClicked: myObject.sayHi(myObject.string, myObject.number)
+                        }
+                    }
+                    Row {
+                        spacing: 6
+                        Button {
+                            type: "primary"
+                            text: "Icon Primary"
+                            icon.source: "assets/mail-send.svg"
+                        }
+                        Button {
+                            type: "danger"
+                            text: "Delete"
+                            icon.source: "assets/trash.svg"
+                        }
+                        Button {
+                            text: "Icon Button"
+                            icon.source: "assets/arrow-down.svg"
+                        }
+
+                        Button {
+                            size: "sm"
+                            text: "Small Button"
+                            icon.source: "assets/checkbox-check.svg"
+                        }
+                    }
+                    Column {
+                        spacing: 6
+
+                        Label {
+                            text: "Link Button"
+                        }
+
+                        Row {
+                            spacing: 6
+
+                            Link {
+                                text: "点击这里"
+                            }
+
+                            Link {
+                                text: "Link Disabled"
+                                enabled: false
+                            }
+
+                            Link {
+                                text: "Link with Icon"
+                                icon.source: "assets/arrow-down.svg"
+                            }
                         }
                     }
                 }

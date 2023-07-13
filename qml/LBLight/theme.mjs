@@ -78,9 +78,10 @@ export function btnSize(control) {
 }
 
 export function btnStyle(control) {
-  let { type, down, enabled, activeFocus } = control;
+  let { type, down, enabled, hovered, activeFocus } = control;
   if (!enabled) {
     down = false;
+    hovered = false;
   }
 
   switch (type) {
@@ -95,6 +96,13 @@ export function btnStyle(control) {
         backgroundColor: down ? opacity(colors.danger, 90) : colors.danger,
         color: colors.dangerForeground,
         borderColor: colors.danger,
+      };
+    case 'link':
+      return {
+        backgroundColor: 'transparent',
+        color: colors.primary,
+        borderColor: 'transparent',
+        underline: hovered ? true : false,
       };
     default:
       return {

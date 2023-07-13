@@ -4,24 +4,45 @@ import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
 import "theme.mjs" as LBTheme
 
-Image {
+Item {
     id: control
     property int size: 16
-    required property string name
+    property string name
+    property string source
+    property color color: LBTheme.colors.foreground
     anchors.verticalCenter: parent.verticalCenter
-    width: size
-    height: size
 
-    property string sourcePath: {
+    readonly property string sourcePath: {
+        if (source) {
+            return source;
+        }
         if (name.endsWith(".svg")) {
             return name;
+        }
+        if (!name) {
+            return null;
         }
         return `assets/${name}.svg`;
     }
 
-    source: sourcePath
-    sourceSize.width: size
-    sourceSize.height: size
-    fillMode: Image.PreserveAspectFit
-    opacity: down ? 0.9 : 1
+    width: size
+    height: size
+
+    Image {
+        id: image
+        anchors.verticalCenter: parent.verticalCenter
+
+        source: sourcePath
+        sourceSize.width: size
+        sourceSize.height: size
+        antialiasing: true
+        fillMode: Image.PreserveAspectFit
+        opacity: down ? 0.9 : 1
+    }
+
+    ColorOverlay {
+        anchors.fill: image
+        source: image
+        color: control.color
+    }
 }
