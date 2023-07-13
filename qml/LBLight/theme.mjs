@@ -123,16 +123,21 @@ export function shadowStyle(control) {
     case 'sm':
       return {
         radius: 2,
+        verticalOffset: 1,
         color: '#0D000000',
       };
+
     case 'md':
       return {
-        radius: 6,
+        radius: 5,
+        verticalOffset: 1,
         color: '#1A000000',
       };
     default:
+    case 'lg':
       return {
-        radius: 3,
+        radius: 8,
+        verticalOffset: 3,
         color: '#1A000000',
       };
   }

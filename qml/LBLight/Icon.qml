@@ -37,7 +37,7 @@ Item {
         sourceSize.height: size
         antialiasing: true
         fillMode: Image.PreserveAspectFit
-        opacity: down ? 0.9 : 1
+        opacity: control.down ? 0.9 : 1
     }
 
     ColorOverlay {

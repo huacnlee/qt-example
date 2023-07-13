@@ -49,10 +49,10 @@ ApplicationWindow {
 
         TabBar {
             id: mainTabBar
-            currentIndex: 0
+            currentIndex: 3
 
             Repeater {
-                model: ["Button", "CheckBox", "Text", "Avatar", "Table"]
+                model: ["Button", "CheckBox", "Text", "Popover", "Avatar", "Table"]
                 TabButton {
                     text: modelData
                     width: 100
@@ -380,6 +380,49 @@ ApplicationWindow {
                         Badge {
                             type: "danger"
                             text: "Danger"
+                        }
+                    }
+                }
+            }
+            Card {
+                id: popoverTab
+                Row {
+                    spacing: 6
+
+                    Button {
+                        text: "Hover Popover"
+
+                        Popover {
+                            trigger: "both"
+                            showClose: false
+
+                            Column {
+                                Row {
+                                    Text {
+                                        text: "This is popover text.\nThis is second line text."
+                                    }
+
+                                    Link {
+                                        text: "Dismiss"
+                                        onClicked: () => {
+                                            parent.close();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Button {
+                        text: "Click Popover"
+                        Popover {
+                            trigger: "click"
+                            Column {
+                                spacing: 6
+                                Text {
+                                    text: "This is popover text."
+                                }
+                            }
                         }
                     }
                 }

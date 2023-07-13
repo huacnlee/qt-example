@@ -12,7 +12,8 @@ ComboBox {
     property var size: "md"
     property var sizes: LBTheme.btnSize(control)
 
-    property int popupOffset: 4
+    readonly property int popupOffset: 4
+    readonly property int maxPopupHeight: 320
 
     delegate: ItemDelegate {
         id: itemDelegate
@@ -89,8 +90,9 @@ ComboBox {
     popup: Popup {
         id: dropdownMenu
         y: control.height + popupOffset
+        margins: 12
         width: control.width
-        implicitHeight: contentItem.implicitHeight + 6
+        implicitHeight: Math.min(contentItem.implicitHeight + 6, maxPopupHeight)
         verticalPadding: 3
         horizontalPadding: 3
 

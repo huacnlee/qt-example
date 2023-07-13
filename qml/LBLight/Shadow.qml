@@ -7,10 +7,10 @@ import "theme.mjs" as LBTheme
 DropShadow {
     id: control
     property string size: ""
-    property var style: LBTheme.shadowStyle(control)
+    property var styles: LBTheme.shadowStyle(control)
 
-    verticalOffset: 1
+    verticalOffset: styles.verticalOffset
     horizontalOffset: 0
-    color: style.color
-    radius: style.radius
+    color: styles.color
+    radius: styles.radius
 }
