@@ -52,7 +52,7 @@ ApplicationWindow {
             currentIndex: 3
 
             Repeater {
-                model: ["Button", "CheckBox", "Text", "Popover", "Avatar", "Table"]
+                model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table"]
                 TabButton {
                     text: modelData
                     width: 100
@@ -380,6 +380,51 @@ ApplicationWindow {
                         Badge {
                             type: "danger"
                             text: "Danger"
+                        }
+                    }
+                }
+            }
+            Card {
+                id: dialogTab
+
+                Row {
+                    spacing: 6
+
+                    Button {
+                        text: "Open Dialog"
+                        onClicked: () => {
+                            dialog1.modal = false;
+                            dialog1.open();
+                        }
+
+                        Dialog {
+                            id: dialog1
+                            title: "Dialog Title"
+
+                            Column {
+                                spacing: 10
+                                Text {
+                                    text: "This is dialog content."
+                                }
+
+                                TextField {
+                                    placeholderText: "Enter your name"
+                                }
+                            }
+
+                            standardButtons: Dialog.Ok | Dialog.Cancel
+                            onAccepted: () => {
+                                console.log("Accepted");
+                            }
+                            onRejected: console.log("Cancel clicked")
+                        }
+                    }
+
+                    Button {
+                        text: "Open Modal"
+                        onClicked: () => {
+                            dialog1.modal = true;
+                            dialog1.open();
                         }
                     }
                 }
