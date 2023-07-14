@@ -58,7 +58,7 @@ ApplicationWindow {
             Card {
                 id: buttonsTab
 
-                ButtonPanel {
+                ButtonExample {
                     anchors.fill: parent
                     myObject: myObject
                 }
@@ -315,7 +315,7 @@ ApplicationWindow {
 
             Card {
                 id: tableViewTab
-                TableViewPanel {
+                TableViewExample {
                 }
             }
         }

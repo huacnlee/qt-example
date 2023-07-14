@@ -69,53 +69,34 @@ ColumnLayout {
         }
     }
 
-    Rectangle {
+    Panel {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        border.width: 1
-        border.color: "#f0f0f0"
-        color: "#f9f9f7"
-        radius: 8
 
-        HorizontalHeaderView {
+        TableHeader {
             id: horizontalHeader
-            anchors.left: tableView.left
-            anchors.top: parent.top
             syncView: tableView
-            textRole: "display"
-            boundsBehavior: Flickable.StopAtBounds
-            model: TableModel {
-                TableModelColumn {
-                    display: "Name"
-                }
-                TableModelColumn {
-                    display: "Code"
-                }
-                TableModelColumn {
-                    display: "Last Done"
+            delegate: TableHeaderCell {
+                implicitHeight: 40
+
+                Text {
+                    text: display
                 }
             }
         }
 
         TableView {
             id: tableView
+            anchors.top: horizontalHeader.bottom
+            anchors.bottom: parent.bottom
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            anchors.top: horizontalHeader.bottom
-            selectionBehavior: TableView.SelectRows
-            columnSpacing: 0
-            rowSpacing: 0
-
-            ScrollBar.vertical: ScrollBar {
-            }
-            boundsBehavior: Flickable.StopAtBounds
 
             model: Watchlist {
                 id: watchlistModel
             }
 
-            delegate: Rectangle {
+            delegate: TableCell {
                 required property bool current
                 required property bool selected
 
@@ -126,34 +107,23 @@ ColumnLayout {
                 implicitHeight: 48
                 color: selected ? "#F4F4F5" : up_down == -1 ? Qt.alpha(downColor, 0.1) : up_down == 1 ? Qt.alpha(upColor, 0.1) : "#ffffff"
 
-                Rectangle {
+                PriceTag {
                     anchors.fill: parent
-                    anchors.margins: 6
-                    color: "transparent"
+                    verticalAlignment: Text.AlignVCenter
+                    visible: column == 2
+                    upDown: up_down
+                    value: last_done
+                }
 
-                    PriceTag {
-                        anchors.fill: parent
-                        verticalAlignment: Text.AlignVCenter
-                        visible: column == 2
-                        upDown: up_down
-                        value: last_done
-                    }
-
-                    Text {
-                        anchors.fill: parent
-                        visible: column != 2
-                        verticalAlignment: Text.AlignVCenter
-                        text: display
-                        elide: Text.ElideRight
-                        color: "#000000"
-                    }
+                Text {
+                    anchors.fill: parent
+                    visible: column != 2
+                    verticalAlignment: Text.AlignVCenter
+                    text: display
+                    elide: Text.ElideRight
+                    color: "#000000"
                 }
             }
-        }
-
-        layer.enabled: true
-        layer.effect: Shadow {
-            size: "sm"
         }
     }
 }
