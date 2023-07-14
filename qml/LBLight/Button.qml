@@ -22,6 +22,8 @@ Button {
 
     readonly property var hasIcon: icon.source != ""
 
+    enabled: !control.loading
+
     contentItem: Row {
         anchors.centerIn: parent
         spacing: 4
