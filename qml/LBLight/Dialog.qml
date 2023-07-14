@@ -36,7 +36,6 @@ Dialog {
 
     background: Rectangle {
         id: background
-        anchors.fill: control
         color: LBTheme.colors.card
         border.width: 1
         border.color: LBTheme.colors.border

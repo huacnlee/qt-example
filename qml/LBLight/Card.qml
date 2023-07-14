@@ -17,7 +17,7 @@ Rectangle {
     Shadow {
     }
 
-    Column {
+    Item {
         id: container
         anchors.fill: parent
         anchors.margins: paddings
