@@ -70,7 +70,7 @@ Button {
         border.width: 1
         border.color: styles.borderColor
         radius: sizes.radius
-        layer.enabled: down ? false : true
+        layer.enabled: down || checked ? false : true
         layer.effect: Shadow {
             size: "sm"
         }

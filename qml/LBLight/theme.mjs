@@ -80,40 +80,66 @@ export function btnSize(control) {
   }
 }
 
+const btnStyles = {
+  primary: {
+    backgroundColor: colors.primary,
+    activeBackgroundColor: opacity(colors.primary, 90),
+    color: colors.primaryForeground,
+    borderColor: colors.primary,
+    underline: false,
+  },
+  danger: {
+    backgroundColor: colors.danger,
+    activeBackgroundColor: opacity(colors.danger, 90),
+    color: colors.dangerForeground,
+    borderColor: colors.danger,
+    underline: false,
+  },
+  link: {
+    backgroundColor: 'transparent',
+    activeBackgroundColor: 'transparent',
+    color: colors.primary,
+    borderColor: 'transparent',
+    underline: false,
+  },
+  checked: {
+    backgroundColor: colors.accent,
+    activeBackgroundColor: colors.accent,
+    color: colors.secondaryForeground,
+    borderColor: colors.accent,
+  },
+  default: {
+    backgroundColor: colors.background,
+    activeBackgroundColor: colors.accent,
+    color: colors.secondaryForeground,
+    borderColor: colors.input,
+    underline: false,
+  },
+};
+
 export function btnStyle(control) {
-  let { type, down, enabled, hovered, activeFocus } = control;
+  let { type, down, enabled, hovered, activeFocus, checked } = control;
   if (!enabled) {
     down = false;
     hovered = false;
   }
-
-  switch (type) {
-    case 'primary':
-      return {
-        backgroundColor: down ? opacity(colors.primary, 90) : colors.primary,
-        color: colors.primaryForeground,
-        borderColor: colors.primary,
-      };
-    case 'danger':
-      return {
-        backgroundColor: down ? opacity(colors.danger, 90) : colors.danger,
-        color: colors.dangerForeground,
-        borderColor: colors.danger,
-      };
-    case 'link':
-      return {
-        backgroundColor: 'transparent',
-        color: colors.primary,
-        borderColor: 'transparent',
-        underline: hovered ? true : false,
-      };
-    default:
-      return {
-        backgroundColor: down ? colors.accent : colors.background,
-        color: colors.secondaryForeground,
-        borderColor: colors.input,
-      };
+  if (checked) {
+    hovered = false;
   }
+
+  if (checked) {
+    return btnStyles.checked;
+  }
+
+  let style = Object.assign({}, btnStyles[type] || btnStyles.default);
+  if (down) {
+    style.backgroundColor = style.activeBackgroundColor;
+  }
+  if (hovered && type === 'link') {
+    style.underline = true;
+  }
+
+  return style;
 }
 
 export function shadowStyle(control) {
