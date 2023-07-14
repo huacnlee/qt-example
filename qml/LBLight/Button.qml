@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Basic
+import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import "theme.mjs" as LBTheme
 
@@ -22,7 +23,6 @@ Button {
     readonly property var hasIcon: icon.source != ""
 
     contentItem: Row {
-        id: row
         anchors.centerIn: parent
         spacing: 4
         opacity: enabled ? down ? 0.7 : 1.0 : 0.3
@@ -51,11 +51,17 @@ Button {
             visible: control.loading
             enabled: control.enabled
         }
+
+        Transition {
+            AnchorAnimation {
+            }  //animates any AnchorChanges in the corresponding state change
+        }
     }
 
     background: Rectangle {
+        id: bg
         anchors.fill: parent
-        implicitWidth: sizes.width
+        // implicitWidth: sizes.width
         implicitHeight: sizes.height
         opacity: enabled ? 1 : 0.3
         color: styles.backgroundColor
