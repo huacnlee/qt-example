@@ -14,11 +14,8 @@ ApplicationWindow {
     height: 960
     visible: true
 
-    function reloadData() {
-        myObject.incrementNumber();
-        myWatchlist.prepare();
-
-    // MainJS.loadData(myObject, mainTableView, {tableRowAction, tableRowLastDone});
+    Timer {
+        id: timer
     }
 
     MouseArea {
@@ -26,9 +23,6 @@ ApplicationWindow {
         onClicked: forceActiveFocus()
     }
 
-    Component.onCompleted: {
-        reloadData();
-    }
     onClosing: {
         // closeDialog.open();
         return false;
@@ -39,9 +33,6 @@ ApplicationWindow {
         number: 1
         string: "Hello, this is number: " + myObject.number
     }
-    Watchlist {
-        id: myWatchlist
-    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -49,7 +40,7 @@ ApplicationWindow {
 
         TabBar {
             id: mainTabBar
-            currentIndex: 3
+            currentIndex: 6
 
             Repeater {
                 model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table"]
@@ -67,180 +58,9 @@ ApplicationWindow {
             Card {
                 id: buttonsTab
 
-                Column {
-                    spacing: 16
-                    Row {
-                        spacing: 6
-
-                        Label {
-                            text: "Number: " + myObject.number
-                        }
-                        Label {
-                            text: "String: " + myObject.string
-                        }
-                        Text {
-                            text: "You Name:"
-
-                            onTextChanged: myObject.string = text
-                        }
-                    }
-
-                    Row {
-                        spacing: 6
-
-                        Button {
-                            text: "Reload Data"
-                            type: "primary"
-                            focus: true
-
-                            onClicked: {
-                                reloadData();
-                            }
-                        }
-                        Button {
-                            text: "Delete"
-                            type: "danger"
-                        }
-                        Button {
-                            enabled: false
-                            text: "Disabled Button"
-                            type: "primary"
-                        }
-                        Button {
-                            enabled: false
-                            text: "Disabled Danger"
-                            type: "danger"
-
-                            onClicked: {
-                                reloadData();
-                            }
-                        }
-                    }
-                    Row {
-                        spacing: 6
-
-                        Button {
-                            text: "Button"
-
-                            onClicked: myObject.sayHi(myObject.string, myObject.number)
-                        }
-                        Button {
-                            size: "lg"
-                            text: "Large Button!"
-
-                            onClicked: myObject.sayHi(myObject.string, myObject.number)
-                        }
-                        Button {
-                            size: "sm"
-                            text: "Small Button"
-
-                            onClicked: myObject.sayHi(myObject.string, myObject.number)
-                        }
-                        Button {
-                            enabled: false
-                            text: "Button Disabled"
-
-                            onClicked: myObject.sayHi(myObject.string, myObject.number)
-                        }
-                    }
-                    Row {
-                        spacing: 6
-                        Button {
-                            type: "primary"
-                            text: "Icon Primary"
-                            icon.source: "assets/mail-send.svg"
-                        }
-                        Button {
-                            type: "danger"
-                            text: "Delete"
-                            icon.source: "assets/trash.svg"
-                        }
-                        Button {
-                            text: "Icon Button"
-                            icon.source: "assets/arrow-down.svg"
-                        }
-
-                        Button {
-                            size: "sm"
-                            text: "Small Button"
-                            icon.source: "assets/checkbox-check.svg"
-                        }
-
-                        Button {
-                            size: "lg"
-                            text: "Large Button"
-                            icon.source: "assets/trash.svg"
-                        }
-                    }
-                    Row {
-                        spacing: 6
-
-                        Button {
-                            text: "Primary with Loading"
-                            type: "primary"
-                            loading: true
-                        }
-
-                        Button {
-                            text: "Danger with Loading"
-                            type: "danger"
-                            loading: true
-                        }
-
-                        Button {
-                            text: "Default"
-                            loading: true
-                        }
-
-                        Button {
-                            text: "Disabled"
-                            enabled: false
-                            loading: true
-                        }
-
-                        Button {
-                            text: "Icon with Loading"
-                            loading: true
-                            icon.source: "assets/mail-send.svg"
-                        }
-
-                        Button {
-                            text: "Small Loading"
-                            size: "sm"
-                            loading: true
-                        }
-
-                        Button {
-                            text: "Large Loading"
-                            size: "lg"
-                            loading: true
-                        }
-                    }
-                    Column {
-                        spacing: 6
-
-                        Label {
-                            text: "Link Button"
-                        }
-
-                        Row {
-                            spacing: 6
-
-                            Link {
-                                text: "点击这里"
-                            }
-
-                            Link {
-                                text: "Link Disabled"
-                                enabled: false
-                            }
-
-                            Link {
-                                text: "Link with Icon"
-                                icon.source: "assets/arrow-down.svg"
-                            }
-                        }
-                    }
+                ButtonPanel {
+                    anchors.fill: parent
+                    myObject: myObject
                 }
             }
             Card {
@@ -492,23 +312,10 @@ ApplicationWindow {
                     }
                 }
             }
+
             Card {
                 id: tableViewTab
-                TableView {
-                    id: mainTableView
-                    anchors.fill: parent
-                    model: myWatchlist
-                    resizableColumns: true
-
-                    delegate: Rectangle {
-                        implicitHeight: 36
-                        implicitWidth: 100
-
-                        Text {
-                            anchors.centerIn: parent
-                            text: name
-                        }
-                    }
+                TableViewPanel {
                 }
             }
         }
@@ -534,22 +341,6 @@ ApplicationWindow {
                     onClicked: {
                         showInfo("You clicked Sell.");
                     }
-                }
-            }
-        }
-    }
-    Component {
-        id: tableRowLastDone
-
-        Item {
-            readonly property var obj: tableModel.getRow(row)
-
-            RowLayout {
-                anchors.centerIn: parent
-
-                LBPrice {
-                    price: obj.last_done_val
-                    upDown: obj.up_down
                 }
             }
         }
