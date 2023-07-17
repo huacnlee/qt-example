@@ -1,8 +1,12 @@
 #include <QtGui/QGuiApplication>
 #include <QtQml/QQmlApplicationEngine>
 
+#include <QtWebEngineQuick>
+
 int main(int argc, char *argv[])
 {
+  QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+  QtWebEngineQuick::initialize();
   QGuiApplication app(argc, argv);
 
   QQmlApplicationEngine engine;

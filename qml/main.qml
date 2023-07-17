@@ -43,7 +43,7 @@ ApplicationWindow {
             currentIndex: 0
 
             Repeater {
-                model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table"]
+                model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table", "WebView"]
                 TabButton {
                     text: modelData
                     width: 100
@@ -137,16 +137,19 @@ ApplicationWindow {
                         spacing: 6
 
                         TextField {
+                            Layout.fillWidth: true
                             placeholderText: "Enter your name"
                         }
 
                         TextField {
+                            Layout.fillWidth: true
                             text: "This is disabled"
                             enabled: false
                             width: 200
                         }
 
                         TextField {
+                            Layout.fillWidth: true
                             echoMode: TextInput.Password
                             text: "Password"
                             width: 200
@@ -316,6 +319,12 @@ ApplicationWindow {
             Card {
                 id: tableViewTab
                 TableViewExample {
+                }
+            }
+
+            Card {
+                id: webviewTab
+                WebViewExample {
                 }
             }
         }

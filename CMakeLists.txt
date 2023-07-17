@@ -37,6 +37,8 @@ if(NOT Corrosion_FOUND)
 endif()
 # ANCHOR_END: book_cmake_find_corrosion
 
+find_package(Qt6 REQUIRED COMPONENTS WebEngineQuick)
+
 # ANCHOR: book_cmake_use_corrosion
 set(CRATE qt-example)
 # Corrosion creates a CMake target with the same name as the crate.
@@ -87,7 +89,7 @@ MACOSX_PACKAGE_LOCATION "Resources")
 qt_add_executable(${APP_NAME} MACOSX_BUNDLE cpp/main.cpp ${app_icon_macos})
 
 # Link to the Rust library
-target_link_libraries(${APP_NAME} PRIVATE ${APP_NAME}_lib)
+target_link_libraries(${APP_NAME} PRIVATE Qt::WebEngineQuick ${APP_NAME}_lib)
 
 # If we are using a statically linked Qt then we need to import any qml plugins
 qt_import_qml_plugins(${APP_NAME})
