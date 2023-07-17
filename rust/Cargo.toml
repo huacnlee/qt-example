@@ -1,7 +1,10 @@
 [package]
 edition = "2021"
-name = "rust-qt-example"
+name = "qt-example"
 version = "0.1.0"
+
+[lib]
+crate-type = ["staticlib"]
 
 [dependencies]
 

@@ -2,12 +2,18 @@
 
 This is an example for write QT UI by Rust.
 
+## Requirement
+
+- QT 6
+- Cmake 3.24+
+
 ## Installation
 
 Install Rust 1.70 or later, Homebrew and XCode command line tools.
 
 ```bash
 $ brew install qt
+$ brew install cmake
 ```
 
 ## Start development

@@ -4,6 +4,6 @@ fn main() {
     CxxQtBuilder::new()
         .qt_module("Network")
         .file("src/cxxqt_object.rs")
-        .setup_linker()
+        // .setup_linker()
         .build();
 }
