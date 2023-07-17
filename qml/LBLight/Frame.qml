@@ -4,24 +4,16 @@ import QtQuick.Controls.Basic
 import Qt5Compat.GraphicalEffects
 import "theme.mjs" as LBTheme
 
-Rectangle {
+Frame {
     id: control
-    default property alias content: contentWrap.children
-    property int padding: 0
-    border.width: 1
-    border.color: LBTheme.colors.border
-    color: LBTheme.colors.muted
-    radius: LBTheme.radius
     clip: true
 
-    Rectangle {
-        id: contentWrap
+    readonly property int radius: LBTheme.radius
+
+    background: Rectangle {
         color: "transparent"
-        clip: true
-        anchors {
-            margins: padding + control.border.width
-            fill: parent
-        }
+        border.color: LBTheme.colors.border
+        radius: control.radius
 
         layer.enabled: true
         layer.effect: OpacityMask {

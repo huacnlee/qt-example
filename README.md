@@ -19,7 +19,7 @@ $ brew install cmake
 ## Start development
 
 ```bash
-cargo run
+make run
 ```
 
 ## Troubleshooting

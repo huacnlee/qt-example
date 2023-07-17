@@ -30,29 +30,33 @@ Column {
         }
     }
 
-    Row {
-        spacing: 6
+    GroupBox {
+        title: "Button"
 
-        Button {
-            text: "Primary Button"
-            type: "primary"
-        }
-        Button {
-            text: "Delete"
-            type: "danger"
-        }
-        Button {
-            enabled: false
-            text: "Disabled Button"
-            type: "primary"
-        }
-        Button {
-            enabled: false
-            text: "Disabled Danger"
-            type: "danger"
+        Row {
+            spacing: 6
 
-            onClicked: {
-                reloadData();
+            Button {
+                text: "Primary Button"
+                type: "primary"
+            }
+            Button {
+                text: "Delete"
+                type: "danger"
+            }
+            Button {
+                enabled: false
+                text: "Disabled Button"
+                type: "primary"
+            }
+            Button {
+                enabled: false
+                text: "Disabled Danger"
+                type: "danger"
+
+                onClicked: {
+                    reloadData();
+                }
             }
         }
     }
@@ -60,14 +64,8 @@ Column {
     Divider {
     }
 
-    Column {
-        spacing: 12
-
-        Text {
-            text: "Button Toggle"
-            font.pixelSize: 16
-            font.weight: Font.DemiBold
-        }
+    GroupBox {
+        title: "Toggle Button"
 
         Row {
             spacing: 6
@@ -124,133 +122,148 @@ Column {
         }
     }
 
-    Row {
-        spacing: 6
-
-        Button {
-            text: "Add"
-
-            onClicked: myObject.sayHi(myObject.string, myObject.number)
-        }
-        Button {
-            size: "lg"
-            text: "This is a Large Button"
-
-            onClicked: myObject.sayHi(myObject.string, myObject.number)
-        }
-        Button {
-            size: "sm"
-            text: "Small Button"
-
-            onClicked: myObject.sayHi(myObject.string, myObject.number)
-        }
-        Button {
-            enabled: false
-            text: "Button Disabled"
-
-            onClicked: myObject.sayHi(myObject.string, myObject.number)
-        }
-    }
-    Row {
-        spacing: 6
-        Button {
-            type: "primary"
-            text: "Icon Primary"
-            icon.source: "assets/mail-send.svg"
-        }
-        Button {
-            type: "danger"
-            text: "Delete"
-            icon.source: "assets/trash.svg"
-        }
-        Button {
-            text: "Icon Button"
-            icon.source: "assets/arrow-down.svg"
-        }
-
-        Button {
-            size: "sm"
-            text: "Small Button"
-            icon.source: "assets/checkbox-check.svg"
-        }
-
-        Button {
-            size: "lg"
-            text: "Large Button"
-            icon.source: "assets/trash.svg"
-        }
-    }
-    Row {
-        spacing: 6
-
-        Button {
-            text: "Primary (Click to Loading)"
-            type: "primary"
-            onClicked: {
-                loading = true;
-                timer.setTimeout(1500, () => {
-                        loading = false;
-                    });
-            }
-        }
-
-        Button {
-            text: "Danger with Loading"
-            type: "danger"
-            loading: true
-        }
-
-        Button {
-            text: "Default"
-            loading: true
-        }
-
-        Button {
-            text: "Disabled"
-            enabled: false
-            loading: true
-        }
-
-        Button {
-            text: "Icon with Loading"
-            loading: true
-            icon.source: "assets/mail-send.svg"
-        }
-
-        Button {
-            text: "Small Loading"
-            size: "sm"
-            loading: true
-        }
-
-        Button {
-            text: "Large Loading"
-            size: "lg"
-            loading: true
-        }
-    }
-    Column {
-        spacing: 6
-
-        Label {
-            text: "Link Button"
-        }
-
+    GroupBox {
+        title: "Button Sizes"
         Row {
             spacing: 6
 
-            Link {
-                text: "点击这里"
-            }
+            Button {
+                text: "Add"
 
-            Link {
-                text: "Link Disabled"
+                onClicked: myObject.sayHi(myObject.string, myObject.number)
+            }
+            Button {
+                size: "lg"
+                text: "This is a Large Button"
+
+                onClicked: myObject.sayHi(myObject.string, myObject.number)
+            }
+            Button {
+                size: "sm"
+                text: "Small Button"
+
+                onClicked: myObject.sayHi(myObject.string, myObject.number)
+            }
+            Button {
                 enabled: false
+                text: "Button Disabled"
+
+                onClicked: myObject.sayHi(myObject.string, myObject.number)
+            }
+        }
+    }
+
+    GroupBox {
+        title: "Button with Icon"
+        Row {
+            spacing: 6
+            Button {
+                type: "primary"
+                text: "Icon Primary"
+                icon.source: "assets/mail-send.svg"
+            }
+            Button {
+                type: "danger"
+                text: "Delete"
+                icon.source: "assets/trash.svg"
+            }
+            Button {
+                text: "Icon Button"
+                icon.source: "assets/arrow-down.svg"
             }
 
-            Link {
-                text: "Link with Icon"
-                icon.source: "assets/arrow-down.svg"
+            Button {
+                size: "sm"
+                text: "Small Button"
+                icon.source: "assets/checkbox-check.svg"
+            }
+
+            Button {
+                size: "lg"
+                text: "Large Button"
+                icon.source: "assets/trash.svg"
+            }
+        }
+    }
+
+    GroupBox {
+        title: "Loading"
+
+        Column {
+            spacing: 12
+            Row {
+                spacing: 6
+
+                Button {
+                    text: "Primary (Click to Loading)"
+                    type: "primary"
+                    onClicked: {
+                        loading = true;
+                        timer.setTimeout(1500, () => {
+                                loading = false;
+                            });
+                    }
+                }
+
+                Button {
+                    text: "Danger with Loading"
+                    type: "danger"
+                    loading: true
+                }
+
+                Button {
+                    text: "Default"
+                    loading: true
+                }
+
+                Button {
+                    text: "Disabled"
+                    enabled: false
+                    loading: true
+                }
+
+                Button {
+                    text: "Icon with Loading"
+                    loading: true
+                    icon.source: "assets/mail-send.svg"
+                }
+
+                Button {
+                    text: "Small Loading"
+                    size: "sm"
+                    loading: true
+                }
+
+                Button {
+                    text: "Large Loading"
+                    size: "lg"
+                    loading: true
+                }
+            }
+            Column {
+                spacing: 6
+
+                Label {
+                    text: "Link Button"
+                }
+
+                Row {
+                    spacing: 6
+
+                    Link {
+                        text: "点击这里"
+                    }
+
+                    Link {
+                        text: "Link Disabled"
+                        enabled: false
+                    }
+
+                    Link {
+                        text: "Link with Icon"
+                        icon.source: "assets/arrow-down.svg"
+                    }
+                }
             }
         }
     }

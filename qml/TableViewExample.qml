@@ -69,9 +69,10 @@ ColumnLayout {
         }
     }
 
-    Panel {
+    Frame {
         Layout.fillHeight: true
         Layout.fillWidth: true
+        padding: 0
 
         TableHeader {
             id: horizontalHeader
@@ -105,7 +106,7 @@ ColumnLayout {
 
                 implicitWidth: 120
                 implicitHeight: 48
-                color: selected ? "#F4F4F5" : up_down == -1 ? Qt.alpha(downColor, 0.1) : up_down == 1 ? Qt.alpha(upColor, 0.1) : "#ffffff"
+                color: selected ? "#F4F4F5" : up_down == -1 ? Qt.alpha(downColor, 0.1) : up_down == 1 ? Qt.alpha(upColor, 0.1) : "transparent"
 
                 PriceTag {
                     anchors.fill: parent
