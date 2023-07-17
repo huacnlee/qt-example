@@ -6,4 +6,5 @@ prepare:
 build: prepare
 	cmake --build build
 run: build
-	./build/$(PROJECT_NAME)
+	./build/$(PROJECT_NAME).app/Contents/MacOS/$(PROJECT_NAME)
+	# open ./build/$(PROJECT_NAME).app

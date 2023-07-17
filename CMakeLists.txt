@@ -75,9 +75,16 @@ target_link_libraries(${APP_NAME}_lib INTERFACE
 )
 # ANCHOR_END: book_cmake_use_corrosion
 
+
+# Setup App Icon for macOS
+set(MACOSX_BUNDLE_ICON_FILE app.icns)
+set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/resources/app.icns")
+set_source_files_properties(${app_icon_macos} PROPERTIES
+MACOSX_PACKAGE_LOCATION "Resources")
+
 # ANCHOR: book_cmake_executable
 # Define the executable with the C++ source and Qt resource files
-add_executable(${APP_NAME} cpp/main.cpp)
+qt_add_executable(${APP_NAME} MACOSX_BUNDLE cpp/main.cpp ${app_icon_macos})
 
 # Link to the Rust library
 target_link_libraries(${APP_NAME} PRIVATE ${APP_NAME}_lib)
