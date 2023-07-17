@@ -16,7 +16,7 @@ TextField {
     color: LBTheme.colors.foreground
 
     background: Rectangle {
-        implicitWidth: Math.max(parent.width, LBTheme.inputDefaultWidth)
+        anchors.fill: parent
         implicitHeight: sizes.height
         radius: sizes.radius
         color: control.enabled ? LBTheme.colors.background : LBTheme.colors.muted
