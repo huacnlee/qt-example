@@ -3,15 +3,16 @@ edition = "2021"
 name = "qt-example"
 version = "0.1.0"
 
-[lib]
-crate-type = ["staticlib"]
+# [lib]
+# crate-type = ["staticlib"]
 
 [dependencies]
+env_logger = "0.8.4"
+log = "0.4.0"
 
 ## QT
-cxx = "1"
-cxx-qt = "0"
-cxx-qt-lib = "0.5.3"
+cstr = "0.2.11"
+qmetaobject = {version = "0.2.9", features = ["webengine"]}
 
 ## Base
 anyhow = "1.0.71"
@@ -28,4 +29,4 @@ tokio = {version = "1", features = ["full", "tracing"]}
 tracing = {version = "0.1.37", features = ["log"]}
 
 [build-dependencies]
-cxx-qt-build = "0"
+cpp_build = "0.5"

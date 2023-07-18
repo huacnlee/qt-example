@@ -3,5 +3,6 @@
     "editor.defaultFormatter": "Delgan.qml-format",
     "editor.tabSize": 4
   },
-  "rust-analyzer.linkedProjects": ["./Cargo.toml"]
+  "rust-analyzer.linkedProjects": ["./Cargo.toml", "./rust/Cargo.toml"],
+  "rust-analyzer.showUnlinkedFileNotification": false
 }

@@ -4,29 +4,25 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
 import "main.mjs" as MainJS
-import "LBLight"
-import com.company.example 1.0
+import "components"
+import QtExample 1.0
 
 Column {
     spacing: 16
 
-    property var myObject: MyObject {
-        id: myObject
+    property var model: SimpleModel {
+        id: model
+        message: "Hello World"
     }
 
-    Row {
+    ColumnLayout {
         spacing: 6
 
         Label {
-            text: "Number: " + myObject.number
+            text: "Counter: " + model.counter
         }
         Label {
-            text: "String: " + myObject.string
-        }
-        Text {
-            text: "You Name:"
-
-            onTextChanged: myObject.string = text
+            text: "Message: " + model.message
         }
     }
 
@@ -39,10 +35,12 @@ Column {
             Button {
                 text: "Primary Button"
                 type: "primary"
+                onClicked: model.increment_number()
             }
             Button {
                 text: "Delete"
                 type: "danger"
+                onClicked: model.message = "You have clicked the delete button."
             }
             Button {
                 enabled: false
@@ -74,11 +72,13 @@ Column {
                 text: "Primary Toggle"
                 type: "primary"
                 checkable: true
+                onClicked: model.message = "Primary Toggle Clicked: " + checked
             }
             Button {
                 text: "Danger Toggle"
                 type: "danger"
                 checkable: true
+                onClicked: model.message = "Danger Toggle Clicked: " + checked
             }
             Button {
                 enabled: false
@@ -130,25 +130,25 @@ Column {
             Button {
                 text: "Add"
 
-                onClicked: myObject.sayHi(myObject.string, myObject.number)
+                onClicked: model.sayHi(model.string, model.number)
             }
             Button {
                 size: "lg"
                 text: "This is a Large Button"
 
-                onClicked: myObject.sayHi(myObject.string, myObject.number)
+                onClicked: model.sayHi(model.string, model.number)
             }
             Button {
                 size: "sm"
                 text: "Small Button"
 
-                onClicked: myObject.sayHi(myObject.string, myObject.number)
+                onClicked: model.sayHi(model.string, model.number)
             }
             Button {
                 enabled: false
                 text: "Button Disabled"
 
-                onClicked: myObject.sayHi(myObject.string, myObject.number)
+                onClicked: model.sayHi(model.string, model.number)
             }
         }
     }

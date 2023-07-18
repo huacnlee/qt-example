@@ -4,8 +4,8 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
 import "main.mjs" as MainJS
-import "LBLight"
-import com.company.example 1.0
+import "components"
+import QtExample 1.0
 
 ApplicationWindow {
     id: app
@@ -28,10 +28,10 @@ ApplicationWindow {
         return false;
     }
 
-    MyObject {
-        id: myObject
-        number: 1
-        string: "Hello, this is number: " + myObject.number
+    SimpleModel {
+        id: model
+        counter: 1
+        message: "Hello, this is number: " + model.counter
     }
 
     ColumnLayout {
@@ -40,7 +40,7 @@ ApplicationWindow {
 
         TabBar {
             id: mainTabBar
-            currentIndex: 0
+            currentIndex: 6
 
             Repeater {
                 model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table", "WebView"]
@@ -60,7 +60,7 @@ ApplicationWindow {
 
                 ButtonExample {
                     anchors.fill: parent
-                    myObject: myObject
+                    model: model
                 }
             }
             Card {

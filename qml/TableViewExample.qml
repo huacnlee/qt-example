@@ -3,9 +3,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import "main.mjs" as MainJS
-import "LBLight"
+import "components"
 import Qt.labs.qmlmodels
-import com.company.example 1.0
+import QtExample 1.0
 
 ColumnLayout {
     anchors.fill: parent
@@ -77,11 +77,20 @@ ColumnLayout {
         TableHeader {
             id: horizontalHeader
             syncView: tableView
-            delegate: TableHeaderCell {
-                implicitHeight: 40
 
-                Text {
-                    text: display
+            model: ListModel {
+                ListElement {
+                    display: "Name"
+                    width: 120
+                }
+                ListElement {
+                    display: "Code"
+                    width: 120
+                }
+                ListElement {
+                    display: "Price"
+                    width: 120
+                    align: Text.AlignRight
                 }
             }
         }
@@ -93,7 +102,7 @@ ColumnLayout {
             anchors.left: parent.left
             anchors.right: parent.right
 
-            model: Watchlist {
+            model: SimpleModel {
                 id: watchlistModel
             }
 
