@@ -1,4 +1,5 @@
 [package]
+description = "This is a QT example application write by Rust."
 edition = "2021"
 name = "qt-example"
 version = "0.1.0"
@@ -30,3 +31,14 @@ tracing = {version = "0.1.37", features = ["log"]}
 
 [build-dependencies]
 cpp_build = "0.5"
+
+[package.metadata.bundle]
+category = "Developer Tool"
+# icon = ["32x32.png", "128x128.png", "128x128@2x.png"]
+identifier = "com.huacnlee.qt-example"
+name = "QT Example"
+osx_frameworks = []
+osx_url_schemes = ["com.huacnlee.qt-example"]
+resources = ["resources"]
+short_description = "An example application."
+version = "1.0.0"

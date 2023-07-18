@@ -5,6 +5,7 @@ import Qt5Compat.GraphicalEffects
 import "theme.mjs" as LBTheme
 
 HorizontalHeaderView {
+    id: control
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.top: parent.top

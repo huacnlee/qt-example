@@ -12,7 +12,10 @@ Frame {
 
     background: Rectangle {
         color: "transparent"
-        border.color: LBTheme.colors.border
+        border {
+            color: LBTheme.colors.border
+            width: 1
+        }
         radius: control.radius
 
         layer.enabled: true

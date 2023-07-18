@@ -14,6 +14,7 @@ Install Rust 1.70 or later, Homebrew and XCode command line tools.
 ```bash
 $ brew install qt
 $ brew install cmake
+$ cargo install cargo-bundle
 ```
 
 ## Start development

@@ -46,7 +46,7 @@ ColumnLayout {
 
         Text {
             Layout.alignment: Qt.AlignVCenter
-            text: "Total Count: " + (tableView.rowCount || 0) + " items"
+            text: "Total Count: " + tableView.rows + " items" + ", current: " + tableView.currentRow + "," + tableView.currentColumn
         }
 
         Button {
@@ -69,30 +69,36 @@ ColumnLayout {
         }
     }
 
-    Frame {
+    Rectangle {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        padding: 0
+        color: "#f0f0f0"
 
         TableHeader {
             id: horizontalHeader
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             syncView: tableView
 
             model: ListModel {
                 ListElement {
                     display: "Name"
-                    width: 120
+                    // width: 120
                 }
                 ListElement {
                     display: "Code"
-                    width: 120
+                    // width: 120
                 }
                 ListElement {
                     display: "Price"
-                    width: 120
+                    // width: 120
                     align: Text.AlignRight
                 }
             }
+        }
+
+        SelectionRectangle {
+            target: tableView
         }
 
         TableView {
@@ -101,29 +107,35 @@ ColumnLayout {
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             anchors.right: parent.right
+            interactive: true
 
             model: SimpleModel {
                 id: watchlistModel
             }
 
             delegate: TableCell {
-                required property bool current
-                required property bool selected
+                selected: tableView.currentRow == row
 
-                readonly property color upColor: MainJS.appColors.trendColor.up
-                readonly property color downColor: MainJS.appColors.trendColor.down
+                readonly property color upColor: Qt.alpha(MainJS.appColors.trendColor.up, 0.1)
+                readonly property color downColor: Qt.alpha(MainJS.appColors.trendColor.down, 0.1)
+                readonly property color bgColor: "#FFFFFF"
 
-                implicitWidth: 120
-                implicitHeight: 48
-                color: selected ? "#F4F4F5" : up_down == -1 ? Qt.alpha(downColor, 0.1) : up_down == 1 ? Qt.alpha(upColor, 0.1) : "transparent"
+                color: bgColor
 
-                PriceTag {
-                    anchors.fill: parent
-                    verticalAlignment: Text.AlignVCenter
-                    visible: column == 2
-                    upDown: up_down
-                    value: last_done
+                TableView.onCommit: {
+                    console.log("----------- TableView.onResued");
+                    bgColorAnimation.restart();
                 }
+
+                ColorAnimation on color  {
+                    id: bgColorAnimation
+                    duration: 100
+                    from: up_down == 1 ? upColor : up_down == -1 ? downColor : bgColor
+                    to: bgColor
+                }
+
+                // implicitWidth: column == 0 ? 520 : 180
+                implicitHeight: 48
 
                 Text {
                     anchors.fill: parent
@@ -131,7 +143,16 @@ ColumnLayout {
                     verticalAlignment: Text.AlignVCenter
                     text: display
                     elide: Text.ElideRight
+                    font.weight: column == 0 ? Font.DemiBold : Font.Normal
                     color: "#000000"
+                }
+
+                PriceTag {
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    visible: column == 2
+                    upDown: up_down
+                    value: last_done
                 }
             }
         }

@@ -26,11 +26,18 @@ static STOCK_NAME_CODES: [(&str, &str); 20] = [
     ("Mastercard", "MA"),
 ];
 
+fn rand_up_down() -> i32 {
+    let mut rng = rand::thread_rng();
+    rng.gen_range(-1..=1)
+}
+
 #[derive(Default, QObject)]
 pub struct SimpleModel {
     base: qt_base_class!(trait QAbstractTableModel),
 
     stocks: Vec<StockItem>,
+    stocks_changed: qt_signal!(),
+
     counter: qt_property!(i32; NOTIFY counter_changed),
     counter_changed: qt_signal!(),
 
@@ -47,7 +54,49 @@ pub struct StockItem {
     name: String,
     code: String,
     last_done: f64,
+    prev_close: f64,
     up_down: i32,
+}
+
+impl StockItem {
+    fn random() -> StockItem {
+        let mut rng = rand::thread_rng();
+        let (name, code) = STOCK_NAME_CODES[rng.gen::<usize>() % STOCK_NAME_CODES.len()];
+        let last_done = rng.gen::<f64>() * 100.0;
+        let prev_close = last_done * rng.gen_range(0.95..=1.05);
+
+        let mut item = StockItem {
+            name: String::from(name),
+            code: String::from(code),
+            last_done: 0.0,
+            prev_close: 0.0,
+            up_down: 0,
+        };
+        item.set_done(prev_close, last_done);
+
+        item
+    }
+
+    fn set_done(&mut self, prev_close: f64, last_done: f64) {
+        self.up_down = 0;
+        self.prev_close = prev_close;
+        self.last_done = last_done;
+
+        if self.last_done > self.prev_close {
+            self.up_down = 1;
+        } else if self.last_done < self.prev_close {
+            self.up_down = -1;
+        }
+    }
+
+    fn random_last_done(mut self) -> StockItem {
+        let mut rng = rand::thread_rng();
+        self.set_done(
+            self.prev_close,
+            self.prev_close * rng.gen_range(0.99..=1.010),
+        );
+        self
+    }
 }
 
 impl QSingletonInit for SimpleModel {
@@ -56,13 +105,30 @@ impl QSingletonInit for SimpleModel {
 
 impl SimpleModel {
     fn reload(&mut self) {
-        let mut new_stocks = Vec::new();
-        let total = rand::random::<usize>() % 50000 + 100;
+        if self.stocks.is_empty() {
+            let mut new_stocks = Vec::new();
+            let total = rand::random::<usize>() % 50000 + 100;
 
-        for _ in 0..total {
-            new_stocks.push(self.rand_stock_item());
+            for _ in 0..total {
+                new_stocks.push(StockItem::random());
+            }
+            self.stocks = new_stocks
+        } else {
+            self.stocks = self
+                .stocks
+                .iter()
+                .map(|stock_item| stock_item.clone().random_last_done())
+                .collect();
+
+            self.update_tableview()
         }
-        self.stocks = new_stocks
+    }
+
+    fn update_tableview(&mut self) {
+        self.data_changed(
+            self.index(0, 0),
+            self.index(self.row_count() - 1, self.column_count() - 1),
+        )
     }
 
     fn increment_number(&mut self) {
@@ -72,19 +138,6 @@ impl SimpleModel {
 
     fn say_hi(&self, string: QString, number: i32) {
         println!("Hi from Rust! String is '{string}' and number is {number}");
-    }
-
-    fn rand_stock_item(&self) -> StockItem {
-        let mut rng = rand::thread_rng();
-        let (name, code) = STOCK_NAME_CODES[rng.gen::<usize>() % STOCK_NAME_CODES.len()];
-        let last_done = rng.gen::<f64>() * 100.0;
-
-        StockItem {
-            name: String::from(name),
-            code: String::from(code),
-            last_done,
-            up_down: rng.gen_range(-1..=1),
-        }
     }
 }
 
@@ -131,17 +184,4 @@ impl QAbstractTableModel for SimpleModel {
 
         QVariant::default()
     }
-
-    // fn header_data(&self, section: i32, orientation: Orientation, role: i32) -> QVariant {
-    //     if role != USER_ROLE || orientation != Orientation::Horizontal {
-    //         return QVariant::default();
-    //     }
-
-    //     match section {
-    //         0 => QVariant::from(&QString::from("Name")),
-    //         1 => QVariant::from(&QString::from("Code")),
-    //         2 => QVariant::from(&QString::from("Last Done")),
-    //         _ => QVariant::default(),
-    //     }
-    // }
 }
