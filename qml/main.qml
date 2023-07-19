@@ -18,6 +18,11 @@ ApplicationWindow {
         id: timer
     }
 
+    Toast {
+        id: toast
+        root: app
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: forceActiveFocus()

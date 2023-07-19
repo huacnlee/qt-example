@@ -95,4 +95,55 @@ ColumnLayout {
             }
         }
     }
+
+    GroupBox {
+        title: "Toast"
+
+        Row {
+            spacing: 6
+
+            Button {
+                text: "Info"
+                onClicked: {
+                    toast.info("This is info toast message.");
+                }
+            }
+
+            Button {
+                text: "Success"
+                onClicked: {
+                    toast.success("数据提交成功，感谢您的反馈。");
+                }
+            }
+
+            Button {
+                text: "Warning"
+                onClicked: {
+                    toast.warning({
+                            "message": "您的网络不稳定，请稍后重试。",
+                            "duration": 3000
+                        });
+                }
+            }
+
+            Button {
+                text: "Error"
+                onClicked: {
+                    toast.error("Sorry, something went wrong.");
+                }
+            }
+
+            Button {
+                text: "Info with Action"
+                onClicked: {
+                    toast.info("This is info toast message.", closeAction);
+                }
+            }
+
+            Button {
+                id: closeAction
+                text: "Dismiss"
+            }
+        }
+    }
 }

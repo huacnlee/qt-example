@@ -167,3 +167,26 @@ export function shadowStyle(control) {
       };
   }
 }
+
+export const toastStyles = {
+  info: {
+    background: '#EFF6FF',
+    border: '#AA99B1EF',
+    foreground: '#1D4ED8',
+  },
+  success: {
+    background: '#F0FDF4',
+    border: '#AA59A776',
+    foreground: '#16803E',
+  },
+  warning: {
+    background: '#FEFCE8',
+    border: '#AACBA76C',
+    foreground: '#A16207',
+  },
+  error: {
+    background: '#FEF2F2',
+    border: '#AAE19999',
+    foreground: '#B91C1C',
+  },
+};
