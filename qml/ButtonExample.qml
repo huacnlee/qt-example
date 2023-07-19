@@ -27,7 +27,7 @@ Column {
     }
 
     GroupBox {
-        title: "Button"
+        title: "Button Style"
 
         Row {
             spacing: 6

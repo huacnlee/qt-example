@@ -178,6 +178,11 @@ ApplicationWindow {
                         }
 
                         ComboBox {
+                            editable: true
+                            model: ["BABA.US", "700.HK", "TSLA.US"]
+                        }
+
+                        ComboBox {
                             model: ["中国大陆", "香港", "美国", "新加坡", "澳大利亚", "新西兰", "印度", "英国", "德国", "日本", "韩国", "泰国", "马来西亚", "菲律宾", "印度尼西亚", "加拿大", "法国", "意大利", "俄罗斯", "西班牙", "瑞典", "爱尔兰", "荷兰", "瑞士", "巴西", "阿根廷", "南非", "埃及", "其他"]
                             currentIndex: 3
                         }
@@ -254,45 +259,8 @@ ApplicationWindow {
             }
             Card {
                 id: popoverTab
-                Row {
-                    spacing: 6
 
-                    Button {
-                        text: "Hover Popover"
-
-                        Popover {
-                            trigger: "both"
-                            showClose: false
-
-                            Column {
-                                Row {
-                                    Text {
-                                        text: "This is popover text.\nThis is second line text."
-                                    }
-
-                                    Link {
-                                        text: "Dismiss"
-                                        onClicked: () => {
-                                            parent.close();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    Button {
-                        text: "Click Popover"
-                        Popover {
-                            trigger: "click"
-                            Column {
-                                spacing: 6
-                                Text {
-                                    text: "This is popover text."
-                                }
-                            }
-                        }
-                    }
+                PopoverExample {
                 }
             }
             Card {

@@ -9,6 +9,8 @@ export const colors = {
   mutedForeground: '#71717A',
   popover: '#FFFFFF',
   popoverForeground: '#18181B',
+  tooltip: '#EA000000',
+  tooltipForeground: '#FFFFFF',
   border: '#E4E4E7',
   input: '#E4E4E7',
   card: '#FFFFFF',
@@ -87,21 +89,18 @@ const btnStyles = {
     activeBackgroundColor: opacity(colors.primary, 90),
     color: colors.primaryForeground,
     borderColor: colors.primary,
-    underline: false,
   },
   danger: {
     backgroundColor: colors.danger,
     activeBackgroundColor: opacity(colors.danger, 90),
     color: colors.dangerForeground,
     borderColor: colors.danger,
-    underline: false,
   },
   link: {
     backgroundColor: 'transparent',
     activeBackgroundColor: 'transparent',
-    color: colors.primary,
+    color: colors.foreground,
     borderColor: 'transparent',
-    underline: false,
   },
   checked: {
     backgroundColor: colors.accent,
@@ -114,7 +113,6 @@ const btnStyles = {
     activeBackgroundColor: colors.accent,
     color: colors.secondaryForeground,
     borderColor: colors.input,
-    underline: false,
   },
 };
 
