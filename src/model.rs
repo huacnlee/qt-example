@@ -26,11 +26,6 @@ static STOCK_NAME_CODES: [(&str, &str); 20] = [
     ("Mastercard", "MA"),
 ];
 
-fn rand_up_down() -> i32 {
-    let mut rng = rand::thread_rng();
-    rng.gen_range(-1..=1)
-}
-
 #[derive(Default, QObject)]
 pub struct SimpleModel {
     base: qt_base_class!(trait QAbstractTableModel),
