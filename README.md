@@ -2,6 +2,8 @@
 
 This is an example for write QT UI by Rust.
 
+https://github.com/huacnlee/qt-example/assets/5518/ebd0c2d7-7540-4aee-b1eb-214885636681
+
 ## Requirement
 
 - QT 6
