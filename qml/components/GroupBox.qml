@@ -10,6 +10,7 @@ GroupBox {
     readonly property int radius: LBTheme.radius
     property color color: LBTheme.colors.background
     padding: 24
+    clip: true
 
     background: Rectangle {
         y: control.topPadding - control.bottomPadding
