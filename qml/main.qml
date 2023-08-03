@@ -13,6 +13,9 @@ ApplicationWindow {
     width: 1280
     height: 960
     visible: true
+    background: Rectangle {
+        color: "#DDDBE4"
+    }
 
     Timer {
         id: timer

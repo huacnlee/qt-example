@@ -5,8 +5,9 @@ import Qt5Compat.GraphicalEffects
 import "theme.mjs" as LBTheme
 
 TableView {
-    columnSpacing: 0
-    rowSpacing: 0
+    id: control
+    columnSpacing: 1
+    rowSpacing: 0.3
     clip: true
 
     ScrollBar.vertical: ScrollBar {
@@ -22,5 +23,14 @@ TableView {
     implicitWidth: Math.max(1, contentWidth)
 
     selectionModel: ItemSelectionModel {
+    }
+
+    columnWidthProvider: function (column) {
+        let w = explicitColumnWidth(column);
+        if (w >= 0)
+            return w;
+
+        // default return columnWidth tableWidth / columnCount for full width
+        return control.model ? control.width / 3 - 1 : 0;
     }
 }

@@ -12,11 +12,16 @@ HorizontalHeaderView {
     height: 40
     clip: true
 
+    // background: Rectangle {
+    //     color: LBTheme.Colors.tableBackground
+    // }
+
     boundsBehavior: Flickable.StopAtBounds
     syncDirection: Qt.Horizontal
 
     delegate: TableHeaderCell {
         implicitHeight: 40
+        implicitWidth: 100
 
         Text {
             anchors.fill: parent

@@ -25,6 +25,7 @@ export const colors = {
   accentForeground: '#18181B',
   focusRing: '#994285F4',
   selectionBackground: '#E7F0FF',
+  tableBackground: '#EAEBEC',
 };
 
 export const borderRadius = {

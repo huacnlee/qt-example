@@ -12,7 +12,7 @@ Rectangle {
     default property alias content: contentWrap.children
     property int padding: 8
 
-    // implicitWidth: 120
+    implicitWidth: 100
     implicitHeight: isHeader ? 40 : 48
 
     Rectangle {

@@ -2,6 +2,13 @@
 #include <QtQml/QQmlApplicationEngine>
 
 #include <QtWebEngineQuick>
+#include <QDockWidget>
+
+void createDockWindow(QWidget *parent)
+{
+  QDockWidget *dock = new QDockWidget("Customers", parent);
+  dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+}
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +21,7 @@ int main(int argc, char *argv[])
   // ANCHOR: book_qml_url
   const QUrl url(QStringLiteral("qml/main.qml"));
   // ANCHOR_END: book_qml_url
+
   QObject::connect(
       &engine,
       &QQmlApplicationEngine::objectCreated,
@@ -26,6 +34,10 @@ int main(int argc, char *argv[])
       Qt::QueuedConnection);
 
   engine.load(url);
+
+  QQuickWindow *qmlwindow = qobject_cast<QQuickWindow *>(engine.rootObjects().first());
+  QWidget *rootWidget = qobject_cast<QWidget *>(qmlwindow->children().first());
+  // createDockWindow(rootWidget);
 
   return app.exec();
 }

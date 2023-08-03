@@ -37,7 +37,11 @@ if(NOT Corrosion_FOUND)
 endif()
 # ANCHOR_END: book_cmake_find_corrosion
 
-find_package(Qt6 REQUIRED COMPONENTS WebEngineQuick)
+find_package(Qt6 REQUIRED COMPONENTS Widgets WebEngineQuick)
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
+
+
+
 
 # ANCHOR: book_cmake_use_corrosion
 set(CRATE qt-example)
@@ -74,7 +78,9 @@ target_link_libraries(${APP_NAME}_lib INTERFACE
     Qt::Gui
     Qt::Qml
     Qt::QuickControls2
+    Qt6::Widgets
 )
+
 # ANCHOR_END: book_cmake_use_corrosion
 
 

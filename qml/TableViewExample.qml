@@ -69,10 +69,9 @@ ColumnLayout {
         }
     }
 
-    Rectangle {
+    Table {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        color: "#f0f0f0"
 
         TableHeader {
             id: horizontalHeader
@@ -123,7 +122,6 @@ ColumnLayout {
                 color: bgColor
 
                 TableView.onCommit: {
-                    console.log("----------- TableView.onResued");
                     bgColorAnimation.restart();
                 }
 
@@ -134,8 +132,9 @@ ColumnLayout {
                     to: bgColor
                 }
 
-                // implicitWidth: column == 0 ? 520 : 180
                 implicitHeight: 48
+                implicitWidth: 100
+                width: tableView.columnWidthProvider(column)
 
                 Text {
                     anchors.fill: parent
