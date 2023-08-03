@@ -7,10 +7,11 @@ import "theme.mjs" as LBTheme
 TabBar {
     id: control
     padding: 4
+    property int radius: LBTheme.borderRadius.lg
 
     background: Rectangle {
         anchors.fill: parent
         color: LBTheme.colors.muted
-        radius: LBTheme.borderRadius.lg
+        radius: control.radius
     }
 }

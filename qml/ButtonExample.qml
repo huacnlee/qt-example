@@ -7,28 +7,26 @@ import "main.mjs" as MainJS
 import "components"
 import QtExample 1.0
 
-Column {
-    spacing: 16
-
+Rectangle {
     property var model: SimpleModel {
         id: model
         message: "Hello World"
     }
 
-    ColumnLayout {
-        spacing: 6
-
-        Label {
-            text: "Counter: " + model.counter
-        }
-        Label {
-            text: "Message: " + model.message
-        }
-    }
-
     SplitView {
         orientation: Qt.Vertical
         anchors.fill: parent
+
+        Column {
+            spacing: 6
+
+            Label {
+                text: "Counter: " + model.counter
+            }
+            Label {
+                text: "Message: " + model.message
+            }
+        }
 
         GroupBox {
             title: "Button Style"

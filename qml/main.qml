@@ -13,9 +13,26 @@ ApplicationWindow {
     width: 1280
     height: 960
     visible: true
-    background: Rectangle {
-        color: "#DDDBE4"
+
+    header: TabBar {
+        id: mainTabBar
+        currentIndex: 6
+        horizontalPadding: 16
+        verticalPadding: 8
+        radius: 0
+
+        Repeater {
+            model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table", "WebView"]
+            TabButton {
+                text: modelData
+                width: 100
+            }
+        }
     }
+
+    // background: Rectangle {
+    //     color: "#DDDBE4"
+    // }
 
     Timer {
         id: timer
@@ -45,19 +62,6 @@ ApplicationWindow {
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 16
-
-        TabBar {
-            id: mainTabBar
-            currentIndex: 6
-
-            Repeater {
-                model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table", "WebView"]
-                TabButton {
-                    text: modelData
-                    width: 100
-                }
-            }
-        }
 
         StackLayout {
             id: mainStockTabs
@@ -198,6 +202,26 @@ ApplicationWindow {
                         ComboBox {
                             model: ["This is disabled", "Item 2"]
                             enabled: false
+                        }
+                    }
+
+                    ColumnLayout {
+                        spacing: 6
+
+                        TextArea {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.top: parent.top
+                            anchors.bottom: btnTextAreaSubmit.height + 6
+                            height: 200
+                            text: "Customizing TabButton\n\nTabButton can be customized in the same manner as Button."
+                            placeholderText: "Write you post here..."
+                        }
+
+                        Button {
+                            id: btnTextAreaSubmit
+                            type: "primary"
+                            text: "Save"
                         }
                     }
 
