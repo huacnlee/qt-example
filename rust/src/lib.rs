@@ -1,1 +1,2 @@
-mod cxxqt_object;
+mod model;
+mod watchlist;

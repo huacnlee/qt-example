@@ -9,6 +9,8 @@ export const colors = {
   mutedForeground: '#71717A',
   popover: '#FFFFFF',
   popoverForeground: '#18181B',
+  tooltip: '#EA000000',
+  tooltipForeground: '#FFFFFF',
   border: '#E4E4E7',
   input: '#E4E4E7',
   card: '#FFFFFF',
@@ -22,6 +24,7 @@ export const colors = {
   accent: '#F4F4F5',
   accentForeground: '#18181B',
   focusRing: '#994285F4',
+  selectionBackground: '#E7F0FF',
 };
 
 export const borderRadius = {
@@ -86,21 +89,18 @@ const btnStyles = {
     activeBackgroundColor: opacity(colors.primary, 90),
     color: colors.primaryForeground,
     borderColor: colors.primary,
-    underline: false,
   },
   danger: {
     backgroundColor: colors.danger,
     activeBackgroundColor: opacity(colors.danger, 90),
     color: colors.dangerForeground,
     borderColor: colors.danger,
-    underline: false,
   },
   link: {
     backgroundColor: 'transparent',
     activeBackgroundColor: 'transparent',
-    color: colors.primary,
+    color: colors.foreground,
     borderColor: 'transparent',
-    underline: false,
   },
   checked: {
     backgroundColor: colors.accent,
@@ -113,7 +113,6 @@ const btnStyles = {
     activeBackgroundColor: colors.accent,
     color: colors.secondaryForeground,
     borderColor: colors.input,
-    underline: false,
   },
 };
 
@@ -168,3 +167,26 @@ export function shadowStyle(control) {
       };
   }
 }
+
+export const toastStyles = {
+  info: {
+    background: '#EFF6FF',
+    border: '#AA99B1EF',
+    foreground: '#1D4ED8',
+  },
+  success: {
+    background: '#F0FDF4',
+    border: '#AA59A776',
+    foreground: '#16803E',
+  },
+  warning: {
+    background: '#FEFCE8',
+    border: '#AACBA76C',
+    foreground: '#A16207',
+  },
+  error: {
+    background: '#FEF2F2',
+    border: '#AAE19999',
+    foreground: '#B91C1C',
+  },
+};

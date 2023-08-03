@@ -26,10 +26,16 @@ Switch {
         }
 
         Rectangle {
-            y: 2
-            x: control.checked ? parent.width - width - 2 : 2
-            width: 16
-            height: 16
+            id: indicator
+
+            readonly property int innerPadding: 2
+            readonly property int indicatorWidth: down ? 20 : 16
+            readonly property int indicatorHeight: 16
+
+            y: innerPadding
+            x: control.checked ? parent.width - indicatorWidth - innerPadding : innerPadding
+            width: indicatorWidth
+            height: indicatorHeight
             radius: 100
             color: LBTheme.colors.card
 
@@ -38,6 +44,11 @@ Switch {
                 size: "sm"
             }
 
+            Behavior on width  {
+                NumberAnimation {
+                    duration: 150
+                }
+            }
             Behavior on x  {
                 NumberAnimation {
                     duration: 150

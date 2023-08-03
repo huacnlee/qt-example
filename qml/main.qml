@@ -4,8 +4,8 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
 import "main.mjs" as MainJS
-import "LBLight"
-import com.company.example 1.0
+import "components"
+import QtExample 1.0
 
 ApplicationWindow {
     id: app
@@ -18,6 +18,11 @@ ApplicationWindow {
         id: timer
     }
 
+    Toast {
+        id: toast
+        root: app
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: forceActiveFocus()
@@ -28,10 +33,10 @@ ApplicationWindow {
         return false;
     }
 
-    MyObject {
-        id: myObject
-        number: 1
-        string: "Hello, this is number: " + myObject.number
+    SimpleModel {
+        id: model
+        counter: 1
+        message: "Hello, this is number: " + model.counter
     }
 
     ColumnLayout {
@@ -40,7 +45,7 @@ ApplicationWindow {
 
         TabBar {
             id: mainTabBar
-            currentIndex: 0
+            currentIndex: 6
 
             Repeater {
                 model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table", "WebView"]
@@ -60,7 +65,7 @@ ApplicationWindow {
 
                 ButtonExample {
                     anchors.fill: parent
-                    myObject: myObject
+                    model: model
                 }
             }
             Card {
@@ -178,6 +183,11 @@ ApplicationWindow {
                         }
 
                         ComboBox {
+                            editable: true
+                            model: ["BABA.US", "700.HK", "TSLA.US"]
+                        }
+
+                        ComboBox {
                             model: ["中国大陆", "香港", "美国", "新加坡", "澳大利亚", "新西兰", "印度", "英国", "德国", "日本", "韩国", "泰国", "马来西亚", "菲律宾", "印度尼西亚", "加拿大", "法国", "意大利", "俄罗斯", "西班牙", "瑞典", "爱尔兰", "荷兰", "瑞士", "巴西", "阿根廷", "南非", "埃及", "其他"]
                             currentIndex: 3
                         }
@@ -254,45 +264,8 @@ ApplicationWindow {
             }
             Card {
                 id: popoverTab
-                Row {
-                    spacing: 6
 
-                    Button {
-                        text: "Hover Popover"
-
-                        Popover {
-                            trigger: "both"
-                            showClose: false
-
-                            Column {
-                                Row {
-                                    Text {
-                                        text: "This is popover text.\nThis is second line text."
-                                    }
-
-                                    Link {
-                                        text: "Dismiss"
-                                        onClicked: () => {
-                                            parent.close();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    Button {
-                        text: "Click Popover"
-                        Popover {
-                            trigger: "click"
-                            Column {
-                                spacing: 6
-                                Text {
-                                    text: "This is popover text."
-                                }
-                            }
-                        }
-                    }
+                PopoverExample {
                 }
             }
             Card {

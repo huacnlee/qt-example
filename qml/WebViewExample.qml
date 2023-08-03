@@ -3,8 +3,8 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtWebEngine
 import "main.mjs" as MainJS
-import "LBLight"
-import com.company.example 1.0
+import "components"
+import QtExample 1.0
 
 ColumnLayout {
     anchors.fill: parent
@@ -17,7 +17,7 @@ ColumnLayout {
     }
 
     Component.onCompleted: {
-        webview.url = "https://github.com";
+        webview.url = "https://github.com/explore";
     }
 
     RowLayout {
@@ -35,7 +35,7 @@ ColumnLayout {
             id: urlField
             Layout.fillWidth: true
             enabled: !model.loading
-            text: "https://github.com"
+            text: "https://github.com/explore"
             placeholderText: "Enter URL"
         }
 
@@ -49,12 +49,17 @@ ColumnLayout {
         }
     }
 
-    WebEngineView {
-        id: webview
+    Frame {
         Layout.fillWidth: true
         Layout.fillHeight: true
-        onLoadingChanged: {
-            model.loading = loading;
+        padding: 0
+        clip: true
+        WebEngineView {
+            id: webview
+            anchors.fill: parent
+            onLoadingChanged: {
+                model.loading = loading;
+            }
         }
     }
 }
