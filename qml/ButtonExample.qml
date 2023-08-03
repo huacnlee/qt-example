@@ -39,7 +39,7 @@ Column {
                 Button {
                     text: "Primary Button"
                     type: "primary"
-                    onClicked: model.increment_number()
+                    onClicked: model.incrementNumber()
                 }
                 Button {
                     text: "Delete"
@@ -131,25 +131,25 @@ Column {
                 Button {
                     text: "Add"
 
-                    onClicked: model.sayHi(model.string, model.number)
+                    onClicked: model.sayHi(model.message, model.counter)
                 }
                 Button {
                     size: "lg"
                     text: "This is a Large Button"
 
-                    onClicked: model.sayHi(model.string, model.number)
+                    onClicked: model.sayHi(model.message, model.counter)
                 }
                 Button {
                     size: "sm"
                     text: "Small Button"
 
-                    onClicked: model.sayHi(model.string, model.number)
+                    onClicked: model.sayHi(model.message, model.counter)
                 }
                 Button {
                     enabled: false
                     text: "Button Disabled"
 
-                    onClicked: model.sayHi(model.string, model.number)
+                    onClicked: model.sayHi(model.message, model.counter)
                 }
             }
         }
