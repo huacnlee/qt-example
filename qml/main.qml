@@ -16,13 +16,13 @@ ApplicationWindow {
 
     header: TabBar {
         id: mainTabBar
-        currentIndex: 6
+        currentIndex: 8
         horizontalPadding: 16
         verticalPadding: 8
         radius: 0
 
         Repeater {
-            model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table", "WebView"]
+            model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table", "WebView", "Dock"]
             TabButton {
                 text: modelData
                 width: 100
@@ -212,7 +212,6 @@ ApplicationWindow {
                             anchors.left: parent.left
                             anchors.right: parent.right
                             anchors.top: parent.top
-                            anchors.bottom: btnTextAreaSubmit.height + 6
                             height: 200
                             text: "Customizing TabButton\n\nTabButton can be customized in the same manner as Button."
                             placeholderText: "Write you post here..."
@@ -325,6 +324,13 @@ ApplicationWindow {
             Card {
                 id: webviewTab
                 WebViewExample {
+                }
+            }
+
+            Card {
+                id: dockTab
+
+                DockExample {
                 }
             }
         }

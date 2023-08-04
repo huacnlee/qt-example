@@ -1,20 +1,17 @@
 #include <QtGui/QGuiApplication>
+#include <QApplication>
 #include <QtQml/QQmlApplicationEngine>
 
 #include <QtWebEngineQuick>
 #include <QDockWidget>
 
-void createDockWindow(QWidget *parent)
-{
-  QDockWidget *dock = new QDockWidget("Customers", parent);
-  dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-}
-
 int main(int argc, char *argv[])
 {
   QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+  QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
   QtWebEngineQuick::initialize();
-  QGuiApplication app(argc, argv);
+  QApplication app(argc, argv);
 
   QQmlApplicationEngine engine;
 
@@ -37,7 +34,6 @@ int main(int argc, char *argv[])
 
   QQuickWindow *qmlwindow = qobject_cast<QQuickWindow *>(engine.rootObjects().first());
   QWidget *rootWidget = qobject_cast<QWidget *>(qmlwindow->children().first());
-  // createDockWindow(rootWidget);
 
   return app.exec();
 }

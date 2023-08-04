@@ -4,6 +4,8 @@ cmake_minimum_required(VERSION 3.24)
 project(example)
 set(APP_NAME ${PROJECT_NAME})
 
+include_directories(${PROJECT_SOURCE_DIR}/cpp)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
@@ -39,8 +41,6 @@ endif()
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets WebEngineQuick)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
-
-
 
 
 # ANCHOR: book_cmake_use_corrosion
@@ -90,9 +90,16 @@ set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/resources/app.icns")
 set_source_files_properties(${app_icon_macos} PROPERTIES
 MACOSX_PACKAGE_LOCATION "Resources")
 
+
+
 # ANCHOR: book_cmake_executable
 # Define the executable with the C++ source and Qt resource files
-qt_add_executable(${APP_NAME} MACOSX_BUNDLE cpp/main.cpp ${app_icon_macos})
+qt_add_executable(
+    ${APP_NAME} 
+    MACOSX_BUNDLE 
+    cpp/main.cpp     
+    ${app_icon_macos}
+)
 
 # Link to the Rust library
 target_link_libraries(${APP_NAME} PRIVATE Qt::WebEngineQuick ${APP_NAME}_lib)
@@ -100,3 +107,4 @@ target_link_libraries(${APP_NAME} PRIVATE Qt::WebEngineQuick ${APP_NAME}_lib)
 # If we are using a statically linked Qt then we need to import any qml plugins
 qt_import_qml_plugins(${APP_NAME})
 # ANCHOR_END: book_cmake_executable
+
