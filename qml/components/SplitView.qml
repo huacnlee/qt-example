@@ -16,10 +16,30 @@ SplitView {
 
         Rectangle {
             anchors.fill: parent
-            anchors.margins: 4.5
-            implicitWidth: 1
-            implicitHeight: 1
-            color: handle.hovered ? LBTheme.colors.focusRing : "transparent"
+            anchors.margins: 2.5
+            implicitWidth: 5
+            implicitHeight: 5
+            radius: LBTheme.borderRadius.sm
+            opacity: 0.8
+            color: handle.hovered ? LBTheme.colors.selectionBackground : "transparent"
+        }
+
+        Control {
+            anchors.centerIn: parent
+
+            Rectangle {
+                anchors.fill: parent
+                color: LBTheme.colors.background
+            }
+
+            Icon {
+                anchors.centerIn: parent
+                name: "draggable"
+                size: 10
+                opacity: handle.hovered ? 0.6 : 0.2
+                // transformOrigin: control.orientation === Qt.Horizontal ? Qt.Top : Qt.Left
+                rotation: control.orientation === Qt.Horizontal ? 0 : 90
+            }
         }
     }
 }

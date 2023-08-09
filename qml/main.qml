@@ -6,6 +6,7 @@ import QtQuick.Window
 import "main.mjs" as MainJS
 import "components"
 import QtExample 1.0
+import Qt.labs.settings 1.0
 
 ApplicationWindow {
     id: app
@@ -14,12 +15,20 @@ ApplicationWindow {
     height: 960
     visible: true
 
+    Settings {
+        id: settings
+    }
+
     header: TabBar {
         id: mainTabBar
-        currentIndex: 8
         horizontalPadding: 16
         verticalPadding: 8
         radius: 0
+
+        Component.onCompleted: () => {
+            mainTabBar.currentIndex = settings.value("ui/mainTabBar.currentIndex", 0);
+        }
+        Component.onDestruction: settings.setValue("ui/mainTabBar.currentIndex", mainTabBar.currentIndex)
 
         Repeater {
             model: ["Button", "CheckBox", "Text", "Dialog", "Popover", "Avatar", "Table", "WebView", "Dock"]

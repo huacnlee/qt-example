@@ -7,7 +7,6 @@ import "theme.mjs" as LBTheme
 Frame {
     id: control
     clip: true
-
     readonly property int radius: LBTheme.radius
 
     background: Rectangle {
